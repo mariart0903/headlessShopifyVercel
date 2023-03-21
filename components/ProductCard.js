@@ -4,7 +4,7 @@ import {formatPrice, getTags} from "../utils";
 import {PRODUCTS_ROUTE} from "../utils/constants";
 
 function ProductCard(props) {
-    const { product }= props;
+    const { product, isSwiperSlide, }= props;
     const {
         id,
         images,
@@ -17,17 +17,17 @@ function ProductCard(props) {
 
     return (
         <Link href={`${PRODUCTS_ROUTE}/${id.replace('gid://shopify/Product/', '')}`} prefetch={ false }>
-            <a className="group shadow-2xl p-4 rounded-xl bg-indigo-100" >
-                <div className="w-full aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+            <a className={`group shadow-2xl p-4 rounded-xl bg-indigo-100 block ${ isSwiperSlide ? 'h-full' : ''}`} >
+                <div className={ `w-full ${ isSwiperSlide ? 'aspect-w-2' : 'aspect-w-3'} aspect-h-3 rounded-lg overflow-hidden` }>
                     <img
                         src={image.transformedSrc}
                         alt={image.altText}
                         className="w-full h-full object-center object-cover group-hover:opacity-75"
                     />
                 </div>
-                <div className="mt-4 flex justify-between text-base font-medium text-gray-900 items-start">
+                <div className="mt-4 text-base font-medium text-gray-900 items-start">
                     <h3>{ title }</h3>
-                    <p className={ 'pl-4' }>{ formatPrice(amount) }</p>
+                    <p>{ formatPrice(amount) }</p>
                 </div>
                 <p className="mt-1 text-sm italic text-gray-500">{ getTags(tags, tags.length) }</p>
             </a>

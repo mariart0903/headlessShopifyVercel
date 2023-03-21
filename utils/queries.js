@@ -222,3 +222,5 @@ export const getRecommendedProductsQuery = `query getRecProductsByID($productId:
           }
       }
 }`;
+
+export const getDiscounts = ``;

@@ -10,6 +10,7 @@ import { client } from "../../utils/shopifyBuyClient";
 import {wrapper} from "../../store/store";
 import parse from 'html-react-parser';
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 const ReviewsWidget = dynamic(() => import('../../components/ReviewsWidget'), { ssr: false });
 
 // Import Swiper styles
@@ -20,8 +21,9 @@ import ProductCard from "../../components/ProductCard";
 
 function Product ({product, recommendedProducts}) {
     const dispatch = useDispatch();
-
+    const { asPath } = useRouter();
     const [swiper, setSwiper] = useState(null);
+    const [recommendationsSwiper, setRecommendationsSwiper] = useState(null);
     const [ selectedOptions, setSelectedOptions ] = useState({});
     const [ selectedVariant, setSelectedVariant ] = useState({});
     const [ variantQuantity, setVariantQuantity ] = useState(1);
@@ -33,6 +35,15 @@ function Product ({product, recommendedProducts}) {
     const lineItems = useSelector((state) => state.checkout.lineItems);
     let qtyInCart = 0;
 
+    useEffect(() => {
+        if (!swiper || swiper.destroyed || !recommendationsSwiper || recommendationsSwiper.destroyed){
+            return;
+        } else {
+            swiper.slideTo(0);
+            recommendationsSwiper.slideTo(0);
+        }
+    }, [asPath]);
+
     const {
         descriptionHtml,
         priceRange:{ minVariantPrice: { amount }},
@@ -40,6 +51,7 @@ function Product ({product, recommendedProducts}) {
         title,
         variants,
         options,
+        id,
     } = product;
 
     useEffect(() => {
@@ -82,8 +94,8 @@ function Product ({product, recommendedProducts}) {
     const renderRecommendedProducts = () => {
         return recommendedProducts?.map((product, idx) => {
             return (
-              <SwiperSlide key={idx}>
-                <ProductCard product={ product }/>
+              <SwiperSlide key={idx} style={{height: 'auto'}}>
+                <ProductCard isSwiperSlide={true} product={ product }/>
               </SwiperSlide>
             );
         })
@@ -181,13 +193,13 @@ function Product ({product, recommendedProducts}) {
                             >
                                 { productImages.map((image, index) =>
                                   <SwiperSlide key={index}>
-                                      <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                      <div className="aspect-w-3 aspect-h-3 rounded-lg overflow-hidden">
                                           <img src={image} alt="product image" className="object-center object-cover mx-auto"/>
                                       </div>
                                   </SwiperSlide>)
                                 }
                             </Swiper> :
-                              <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                              <div className="aspect-w-3 aspect-h-3 rounded-lg overflow-hidden">
                                   <img src={selectedVariant?.image?.transformedSrc} alt={selectedVariant?.image?.altText} className="object-center object-cover mx-auto" />
                               </div>
                             }
@@ -205,6 +217,12 @@ function Product ({product, recommendedProducts}) {
                                     <p className="text-sm text-gray-500 mt-2">
                                         {getTags(tags, tags?.length)}
                                     </p>
+                                </div>
+                            </div>
+
+                            <div className="my-2">
+                                <div className="yotpo bottomLine"
+                                     data-yotpo-product-id={id?.replace('gid://shopify/Product/', '')}>
                                 </div>
                             </div>
 
@@ -265,20 +283,22 @@ function Product ({product, recommendedProducts}) {
                     </div>
                     {recommendedProducts?.length > 0 &&
                       <div className="mt-16">
-                          <h3 className="text-3xl text-indigo-900">Produse recomandate: alegeri similare ale altor clienti</h3>
+                          <h3 className="text-3xl text-indigo-900 mt-4 mb-8">Produse recomandate: alegeri similare ale altor clienti</h3>
                           <Swiper
                             modules={[Navigation, Pagination, A11y]}
-                            spaceBetween={50}
-                            slidesPerView={2.5}
+                            spaceBetween={20}
+                            slidesPerView={3.6}
                             navigation
                             pagination={{ clickable: true }}
-                            onSwiper={(swiper) => setSwiper(swiper)}
+                            onSwiper={(swiper) => setRecommendationsSwiper(swiper)}
                           >
                               {renderRecommendedProducts()}
                           </Swiper>
                       </div>
                     }
-                    <ReviewsWidget product={product} price={selectedVariant?.amount} images={productImages}/>
+                    <div className="mt-8">
+                        <ReviewsWidget product={product} price={selectedVariant?.amount} images={productImages}/>
+                    </div>
                 </main>
             </div>
         </div>

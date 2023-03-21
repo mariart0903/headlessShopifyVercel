@@ -37,7 +37,7 @@ const Blogs = ({articles, blog}) => {
   return (
     <div className='mt-8'>
       { blog?.title && <h1 className='text-4xl font-bold mb-8'>{blog?.title}</h1>}
-      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:gap-x-8 mb-12 mt-8">
+      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:gap-x-8 pb-12 mt-8">
         {renderBlogCards()}
       </div>
     </div>

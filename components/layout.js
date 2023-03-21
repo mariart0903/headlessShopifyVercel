@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
             <NewHeader />
             { !isCartPage ? <CartDrawer /> : null }
             <main
-              className="bg-contain bg-center bg-repeat-y pt-8"
+              className="bg-center bg-repeat-y pt-8"
               style={{backgroundImage: 'url("/images/lines2.png")'}}
             >
                 <div className={ 'px-4 sm:px-6 lg:px-8 container mx-auto ' }>{children}</div>
