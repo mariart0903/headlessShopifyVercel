@@ -11,6 +11,7 @@ import {wrapper} from "../../store/store";
 import parse from 'html-react-parser';
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import SocialShare from "../../components/Parts/SocialShare.js";
 const ReviewsWidget = dynamic(() => import('../../components/Yotpo/ReviewsWidget'), { ssr: false });
 
 // Import Swiper styles
@@ -18,6 +19,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import ProductCard from "../../components/ProductComponents/ProductCard";
+import SeoHead from "../../components/Parts/SEO_HEAD";
+
+export const SEOContext = React.createContext({});
 
 function Product ({product, recommendedProducts}) {
     const dispatch = useDispatch();
@@ -53,6 +57,14 @@ function Product ({product, recommendedProducts}) {
         options,
         id,
     } = product;
+
+    const SEOValues={
+        seo_title: title,
+        seo_social_image: selectedVariant?.image,
+        seo_description: descriptionHtml,
+        seo_social_title: title,
+        seo_social_description: descriptionHtml
+    };
 
     useEffect(() => {
         let defaultOptionValues = {};
@@ -178,140 +190,144 @@ function Product ({product, recommendedProducts}) {
 
     return (
         <div>
-            <div className="bg-white">
-                <main className="mx-auto py-14 px-4 sm:py-24 sm:px-6 lg:px-8">
-                    <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
+            <SEOContext.Provider value={ SEOValues }>
+                <SeoHead/>
+                <div className="bg-white">
+                    <main className="mx-auto py-14 px-4 sm:py-24 sm:px-6 lg:px-8">
+                        <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
 
-                        <div className="lg:row-end-1 lg:col-span-4">
-                            { productImages.length > 0 ? <Swiper
-                              modules={[Navigation, Pagination, A11y]}
-                              spaceBetween={50}
-                              slidesPerView={1}
-                              navigation
-                              pagination={{ clickable: true }}
-                              onSwiper={(swiper) => setSwiper(swiper)}
-                            >
-                                { productImages.map((image, index) =>
-                                  <SwiperSlide key={index}>
-                                      <div className="aspect-w-3 aspect-h-3 rounded-lg overflow-hidden">
-                                          <img src={image} alt="product image" className="object-center object-cover mx-auto"/>
-                                      </div>
-                                  </SwiperSlide>)
-                                }
-                            </Swiper> :
-                              <div className="aspect-w-3 aspect-h-3 rounded-lg overflow-hidden">
-                                  <img src={selectedVariant?.image?.transformedSrc} alt={selectedVariant?.image?.altText} className="object-center object-cover mx-auto" />
-                              </div>
-                            }
-                        </div>
-
-                        <div className="max-w-2xl mx-auto mt-14 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
-                            <div className="flex flex-col-reverse">
-                                <div className="mt-4">
-                                    <h1 className="text-2xl font-extrabold tracking-tight text-indigo-900 sm:text-3xl">
-                                        {title}
-                                    </h1>
-                                    <h2 id="information-heading" className="sr-only">
-                                        Product information
-                                    </h2>
-                                    <p className="text-sm text-gray-500 mt-2">
-                                        {getTags(tags, tags?.length)}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="my-2">
-                                <div className="yotpo bottomLine"
-                                     data-yotpo-product-id={id?.replace('gid://shopify/Product/', '')}>
-                                </div>
-                            </div>
-
-                            <p className="text-3xl tracking-tight text-gray-900 mt-4 font-bold"> { formatPrice(selectedVariant?.amount) } </p>
-
-                            <div className="text-gray-500 my-6">{ descriptionHtml && parse(descriptionHtml) }</div>
-
-                            <div className={ 'flex flex-col' }>
-                                { getVariantsPickers() }
-                                <div>
-                                    <label>Select Quantity</label>
-                                    <input
-                                        onChange={ handleQuantityChange }
-                                        type="number"
-                                        className={ 'select_styles' }
-                                        min={ 1 }
-                                        value={ variantQuantity }
-                                        max={ selectedVariant?.quantityAvailable ? parseInt(selectedVariant?.quantityAvailable) - parseInt(qtyInCart) : 0}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
-                                {addToCartError &&
-                                <div
-                                    className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-                                    role="alert">
-                                    <strong className="font-bold">{ addToCartError }</strong>
-                                </div>
-                                }
-
-                                <button
-                                    disabled={ (selectedVariant?.quantityAvailable < 1 || !checkoutId ) ? 1 : 0 }
-                                    onClick={ handleAddVariantToCart }
-                                    type="button"
-                                    className={ `w-full border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500 ${selectedVariant?.quantityAvailable >= 1 ? 'bg-gray-900 hover:bg-gray-700' : 'bg-gray-200'}` }
+                            <div className="lg:row-end-1 lg:col-span-4">
+                                { productImages.length > 0 ? <Swiper
+                                  modules={[Navigation, Pagination, A11y]}
+                                  spaceBetween={50}
+                                  slidesPerView={1}
+                                  navigation
+                                  pagination={{ clickable: true }}
+                                  onSwiper={(swiper) => setSwiper(swiper)}
                                 >
-                                    { isLoading ?
-                                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg> :
-                                      <span>
-                                          Add To Cart { selectedVariant?.amount ? formatPrice(selectedVariant?.amount) : ''}
-                                      </span>
+                                    { productImages.map((image, index) =>
+                                      <SwiperSlide key={index}>
+                                          <div className="aspect-w-3 aspect-h-3 rounded-lg overflow-hidden">
+                                              <img src={image} alt="product image" className="object-center object-cover mx-auto"/>
+                                          </div>
+                                      </SwiperSlide>)
                                     }
-                                </button>
-                                <button
-                                    disabled={ !checkoutId ? 1 : 0 }
-                                    onClick={ () => goToCheckout(checkoutUrl) }
-                                    type="button"
-                                    className="w-full bg-white border rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500"
-                                >
-                                    Go to checkout
-                                </button>
+                                </Swiper> :
+                                  <div className="aspect-w-3 aspect-h-3 rounded-lg overflow-hidden">
+                                      <img src={selectedVariant?.image?.transformedSrc} alt={selectedVariant?.image?.altText} className="object-center object-cover mx-auto" />
+                                  </div>
+                                }
+                            </div>
+
+                            <div className="max-w-2xl mx-auto mt-14 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
+                                <div className="flex flex-col-reverse">
+                                    <div className="mt-4">
+                                        <h1 className="text-2xl font-extrabold tracking-tight text-indigo-900 sm:text-3xl">
+                                            {title}
+                                        </h1>
+                                        <h2 id="information-heading" className="sr-only">
+                                            Product information
+                                        </h2>
+                                        <p className="text-sm text-gray-500 mt-2">
+                                            {getTags(tags, tags?.length)}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="my-2">
+                                    <div className="yotpo bottomLine"
+                                         data-yotpo-product-id={id?.replace('gid://shopify/Product/', '')}>
+                                    </div>
+                                </div>
+
+                                <p className="text-3xl tracking-tight text-gray-900 mt-4 font-bold"> { formatPrice(selectedVariant?.amount) } </p>
+
+                                <div className="text-gray-500 my-6">{ descriptionHtml && parse(descriptionHtml) }</div>
+                                <SocialShare product={ product }/>
+
+                                <div className={ 'flex flex-col' }>
+                                    { getVariantsPickers() }
+                                    <div>
+                                        <label>Select Quantity</label>
+                                        <input
+                                            onChange={ handleQuantityChange }
+                                            type="number"
+                                            className={ 'select_styles' }
+                                            min={ 1 }
+                                            value={ variantQuantity }
+                                            max={ selectedVariant?.quantityAvailable ? parseInt(selectedVariant?.quantityAvailable) - parseInt(qtyInCart) : 0}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+                                    {addToCartError &&
+                                    <div
+                                        className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                        role="alert">
+                                        <strong className="font-bold">{ addToCartError }</strong>
+                                    </div>
+                                    }
+
+                                    <button
+                                        disabled={ (selectedVariant?.quantityAvailable < 1 || !checkoutId ) ? 1 : 0 }
+                                        onClick={ handleAddVariantToCart }
+                                        type="button"
+                                        className={ `w-full border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500 ${selectedVariant?.quantityAvailable >= 1 ? 'bg-gray-900 hover:bg-gray-700' : 'bg-gray-200'}` }
+                                    >
+                                        { isLoading ?
+                                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                            </svg> :
+                                          <span>
+                                              Add To Cart { selectedVariant?.amount ? formatPrice(selectedVariant?.amount) : ''}
+                                          </span>
+                                        }
+                                    </button>
+                                    <button
+                                        disabled={ !checkoutId ? 1 : 0 }
+                                        onClick={ () => goToCheckout(checkoutUrl) }
+                                        type="button"
+                                        className="w-full bg-white border rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500"
+                                    >
+                                        Go to checkout
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {recommendedProducts?.length > 0 &&
-                      <div className="mt-16">
-                          <h3 className="text-3xl text-indigo-900 mt-4 mb-8">Produse recomandate: alegeri similare ale altor clienti</h3>
-                          <Swiper
-                            modules={[Navigation, Pagination, A11y]}
-                            spaceBetween={20}
-                            breakpoints={{
-                                1250: {
-                                    slidesPerView: 4.5,
-                                },
-                                1024: {
-                                    slidesPerView: 3.5,
-                                },
-                                769: {
-                                    slidesPerView: 2.5,
-                                },
-                            }}
-                            slidesPerView={1.5}
-                            navigation
-                            pagination={{ clickable: true }}
-                            onSwiper={(swiper) => setRecommendationsSwiper(swiper)}
-                          >
-                              {renderRecommendedProducts()}
-                          </Swiper>
-                      </div>
-                    }
-                    <div className="mt-8">
-                        <ReviewsWidget product={product} price={selectedVariant?.amount} images={productImages}/>
-                    </div>
-                </main>
-            </div>
+                        {recommendedProducts?.length > 0 &&
+                          <div className="mt-16">
+                              <h3 className="text-3xl text-indigo-900 mt-4 mb-8">Produse recomandate: alegeri similare ale altor clienti</h3>
+                              <Swiper
+                                modules={[Navigation, Pagination, A11y]}
+                                spaceBetween={20}
+                                breakpoints={{
+                                    1250: {
+                                        slidesPerView: 4.5,
+                                    },
+                                    1024: {
+                                        slidesPerView: 3.5,
+                                    },
+                                    769: {
+                                        slidesPerView: 2.5,
+                                    },
+                                }}
+                                slidesPerView={1.5}
+                                navigation
+                                pagination={{ clickable: true }}
+                                onSwiper={(swiper) => setRecommendationsSwiper(swiper)}
+                              >
+                                  {renderRecommendedProducts()}
+                              </Swiper>
+                          </div>
+                        }
+                        <div className="mt-8">
+                            <ReviewsWidget product={product} price={selectedVariant?.amount} images={productImages}/>
+                        </div>
+                    </main>
+                </div>
+            </SEOContext.Provider>
         </div>
     );
 }
