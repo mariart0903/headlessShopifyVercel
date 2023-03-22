@@ -8,8 +8,8 @@ const ReviewsWidget = (props) => {
     const strippedId = id?.replace('gid://shopify/Product/', '');
 
     useEffect(() => {
-        if (typeof window.yotpo !== "undefined") {
-            window.yotpo.initWidgets();
+        if (typeof window.yotpo !== "undefined" && typeof window.yotpoWidgetsContainer) {
+            window.yotpoWidgetsContainer.initWidgets();
         }
     }, [asPath, props]);
 
