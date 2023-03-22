@@ -13,14 +13,24 @@ const ReviewsWidget = (props) => {
         }
     }, [asPath, props]);
 
-    return (<div className="yotpo yotpo-main-widget"
+   /* return (<div className="yotpo yotpo-main-widget"
                  data-product-id={strippedId}
                  data-price={price}
                  data-currency="RON"
                  data-name={title}
                  data-url={'https://' + process.env.NEXT_PUBLIC_API_URL + '/products/' + handle}
                  data-image-url={images[0] ? images[0] : ''}>
-    </div>)
+    </div>)*/
+    return (
+      <div className="yotpo-widget-instance"
+           data-yotpo-instance-id="363116"
+           data-yotpo-product-id={strippedId}
+           data-yotpo-name={title}
+           data-yotpo-url={'https://' + process.env.NEXT_PUBLIC_API_URL + '/products/' + handle}
+           data-yotpo-image-url={images[0] ? images[0] : ''}
+           data-yotpo-price={price}
+      ></div>
+    );
 };
 
 export default ReviewsWidget;
