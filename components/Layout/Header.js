@@ -2,7 +2,7 @@ import React from "react";
 import { ShoppingBagIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import CollectionsList from "./CollectionsList";
-import {CART_ROUTE, PRODUCTS_ROUTE} from "../utils/constants";
+import {CART_ROUTE, PRODUCTS_ROUTE} from "../../utils/constants";
 
 
 const Header = () => {
@@ -33,7 +33,7 @@ const Header = () => {
                         </Link>
 
                         <a
-                            href="#"
+                            href="@/components/Layout/Header#"
                             className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
                         >
                             Account

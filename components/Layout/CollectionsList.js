@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import Link from "next/link";
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import {COLLECTIONS_ROUTE} from "../utils/constants";
+import {COLLECTIONS_ROUTE} from "../../utils/constants";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')

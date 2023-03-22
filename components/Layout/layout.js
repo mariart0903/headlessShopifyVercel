@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import CartDrawer from "./CartDrawer";
+import CartDrawer from "../Cart/CartDrawer";
 import Header from "./Header";
 import NewHeader from "./NewHeader";
-import { client} from "../utils/shopifyBuyClient";
+import { client} from "../../utils/shopifyBuyClient";
 import { useDispatch } from "react-redux";
-import { setCheckout } from "../store/checkoutSlice";
+import { setCheckout } from "../../store/checkoutSlice";
 import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {

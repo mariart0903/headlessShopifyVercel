@@ -1,5 +1,5 @@
 import React from "react";
-import LineItem from "../components/LineItem";
+import LineItem from "../components/Cart/LineItem";
 import {formatPrice, goToCheckout} from "../utils";
 import { useSelector } from 'react-redux';
 
@@ -7,7 +7,7 @@ const Cart = () => {
     const checkout = useSelector((state) => state.checkout);
 
     return (
-        <div>
+        <div className="bg-white pb-8 rounded-2xl">
             <header className="Cart__header block">
                 <h1 className='text-2xl font-bold'>Your cart</h1>
             </header>

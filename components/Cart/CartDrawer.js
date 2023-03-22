@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, }  from "react";
 import LineItem from "./LineItem";
 import { useSelector, useDispatch } from 'react-redux';
-import { setCartClose } from "../store/checkoutSlice";
-import {goToCheckout} from "../utils";
+import { setCartClose } from "../../store/checkoutSlice";
+import {goToCheckout} from "../../utils";
 
 const CartDrawer = () => {
     const dispatch = useDispatch();
     const checkout = useSelector((state) => state.checkout);
+    console.log(checkout);
 
     useEffect(() => {
       document.addEventListener('click', handleBodyClick, { capture: true });
@@ -46,14 +47,16 @@ const CartDrawer = () => {
                     )
                 })}
             </ul>
-            <button
+            {checkout?.lineItems?.length > 0 && (
+              <button
                 disabled={ !checkout.checkoutId ? 1 : 0 }
                 onClick={ () => goToCheckout(checkout.checkoutUrl) }
                 type="button"
                 className="w-full bg-white border rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500"
-            >
-                Go to checkout
-            </button>
+              >
+                  Go to checkout
+              </button>
+            ) }
         </div>
     )
 }

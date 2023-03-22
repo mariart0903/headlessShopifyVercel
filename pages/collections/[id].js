@@ -1,16 +1,25 @@
 import {wrapper} from "../../store/store";
 import {storefront} from "../../utils";
 import {singleCollectionQuery, } from "../../utils/queries";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/ProductComponents/ProductCard";
 import parse from 'html-react-parser';
-import React from "react";
+import React, {useState} from "react";
 import Image from "next/image";
+import Pagination from "../../components/Parts/Pagination.js";
 
 const Collection = ({collection}) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 9;
   const { title, descriptionHtml, products, image: {url: imageUrl, altText: imageAlt} } = collection;
 
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   const renderProducts = () => {
-    return products?.edges?.map((product, idx) => {
+    const productsRendered = products?.edges?.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+    return productsRendered?.map((product, idx) => {
       return (
         <ProductCard key={idx} product={ product.node }/>
       );
@@ -60,6 +69,12 @@ const Collection = ({collection}) => {
         {renderProducts()}
       </div>
     }
+    <Pagination
+      items={products?.edges?.length}
+      currentPage={currentPage}
+      pageSize={pageSize}
+      onPageChange={onPageChange}
+    />
   </div>;
 }
 

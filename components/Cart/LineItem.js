@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { handleIncrementQty, handleDecrementQty, handleRemoveItem} from "../utils/cartActions";
-import {formatPrice} from "../utils";
+import { handleIncrementQty, handleDecrementQty, handleRemoveItem} from "../../utils/cartActions";
+import {formatPrice} from "../../utils";
 
 let lineItemAvailableQty = {};
 

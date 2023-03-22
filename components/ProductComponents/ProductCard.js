@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import {formatPrice, getTags} from "../utils";
-import {PRODUCTS_ROUTE} from "../utils/constants";
+import {formatPrice, getTags} from "../../utils";
+import {PRODUCTS_ROUTE} from "../../utils/constants";
 
 function ProductCard(props) {
     const { product, isSwiperSlide, }= props;

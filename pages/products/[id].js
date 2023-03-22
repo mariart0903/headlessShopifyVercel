@@ -3,7 +3,7 @@ import { Navigation, Pagination, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {getRecommendedProductsQuery, singleProductQuery} from "../../utils/queries";
 import { storefront, getTags, formatPrice, checkIfObjectsAreEqual, goToCheckout } from "../../utils";
-import VariantSelector from "../../components/VariantSelector";
+import VariantSelector from "../../components/ProductComponents/VariantSelector";
 import {useDispatch, useSelector} from "react-redux";
 import { addVariantToCart, setCartOpen, } from "../../store/checkoutSlice";
 import { client } from "../../utils/shopifyBuyClient";
@@ -11,13 +11,13 @@ import {wrapper} from "../../store/store";
 import parse from 'html-react-parser';
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-const ReviewsWidget = dynamic(() => import('../../components/ReviewsWidget'), { ssr: false });
+const ReviewsWidget = dynamic(() => import('../../components/Yotpo/ReviewsWidget'), { ssr: false });
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/ProductComponents/ProductCard";
 
 function Product ({product, recommendedProducts}) {
     const dispatch = useDispatch();
@@ -287,7 +287,18 @@ function Product ({product, recommendedProducts}) {
                           <Swiper
                             modules={[Navigation, Pagination, A11y]}
                             spaceBetween={20}
-                            slidesPerView={3.6}
+                            breakpoints={{
+                                1250: {
+                                    slidesPerView: 4.5,
+                                },
+                                1024: {
+                                    slidesPerView: 3.5,
+                                },
+                                769: {
+                                    slidesPerView: 2.5,
+                                },
+                            }}
+                            slidesPerView={1.5}
                             navigation
                             pagination={{ clickable: true }}
                             onSwiper={(swiper) => setRecommendationsSwiper(swiper)}

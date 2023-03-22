@@ -5,7 +5,7 @@ import { XIcon,} from '@heroicons/react/outline';
 import CollectionsList from "./CollectionsList";
 import {useSelector} from "react-redux";
 import Link from "next/link";
-import {CART_ROUTE, COLLECTIONS_ROUTE, PRODUCTS_ROUTE} from "../utils/constants";
+import {CART_ROUTE, COLLECTIONS_ROUTE, PRODUCTS_ROUTE} from "../../utils/constants";
 import {useRouter} from "next/router";
 
 const NewHeader = () => {
@@ -53,7 +53,7 @@ const NewHeader = () => {
                   </Link>
 
                   <a
-                    href="#"
+                    href="@/components/Layout/NewHeader#"
                     className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
                   >
                       Account

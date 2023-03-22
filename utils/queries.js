@@ -1,5 +1,5 @@
 export const productsQuery = `query Products {
-  products(first: 100) {
+  products(first: 200) {
     edges {
       node {
         title,
