@@ -7,7 +7,11 @@ module.exports = {
     'text-indigo-700',
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'xs': '475px',
+      },
+    },
   },
   corePlugins: {
     aspectRatio: false,

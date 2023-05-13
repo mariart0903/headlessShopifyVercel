@@ -6,6 +6,7 @@ import { client} from "../../utils/shopifyBuyClient";
 import { useDispatch } from "react-redux";
 import { setCheckout } from "../../store/checkoutSlice";
 import { useRouter } from "next/router";
+import Search from "./Search";
 
 const Layout = ({ children }) => {
     const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const Layout = ({ children }) => {
     return (
         <div className="min-h-screen">
             <NewHeader />
+            <Search />
             { !isCartPage ? <CartDrawer /> : null }
             <main
               className="bg-center bg-repeat-y pt-8"

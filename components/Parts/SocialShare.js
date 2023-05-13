@@ -23,7 +23,7 @@ const SocialShare = (props) => {
     const socialTitle = SEOData?.seo_social_title || '';
     const socialDescription = SEOData?.seo_social_description || '';
     const url = `${STOREFRONT_ROUTE}${PRODUCTS_ROUTE}/${id.replace('gid://shopify/Product/', '')}`;
-    console.log(url);
+
     return (
         <div className="flex flex-row justify-center">
             <FacebookShareButton url={ url }>

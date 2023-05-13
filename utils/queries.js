@@ -76,7 +76,7 @@ export const singleProductQuery = `query getProductById($id: ID!) {
 }`
 
 export const getProductByTitleQuery = `query GetProductByTitle($title: String!) {
-    products(first: 1, query: $title) {
+    products(first: 100, query: $title) {
         edges {
             node {
                 variants(first: 100) {
@@ -284,3 +284,33 @@ export const getCollectionFacets = `query Facets($handle: String!) {
     }
   }
 }`;
+
+export const getProductByTitleQuery2 = `query GetProductByTitle($title: String!) {
+    products(first: 8, query: $title) {
+         edges {
+        node {
+          title,
+          handle,
+          tags,
+          id,
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+            maxVariantPrice {
+              amount
+            }
+          }
+          images(first: 1) {
+            edges {
+              node {
+                transformedSrc
+                altText
+              }
+            }
+          }
+        }
+      }
+    }
+}
+`;

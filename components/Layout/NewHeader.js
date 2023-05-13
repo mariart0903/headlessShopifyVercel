@@ -20,7 +20,7 @@ const NewHeader = () => {
     return (
       <header className="bg-indigo-400">
           <nav className="mx-auto flex-wrap flex container items-center justify-between p-6 lg:px-8" aria-label="Global">
-              <div className="mb-4 w-full flex items-center justify-center pt-6">
+              <div className="mb-4 w-full flex items-center justify-center">
                   <span className="sr-only">Workflow</span>
                   <img
                     className="h-16 w-auto"
@@ -39,7 +39,7 @@ const NewHeader = () => {
                   </button>
               </div>
               <CollectionsList />
-              <div className="ml-10 space-x-4 flex">
+              <div className="space-x-4 flex">
                   <Link href={ PRODUCTS_ROUTE } prefetch={ false }>
                       <a className="group inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75">
                           Catalog
