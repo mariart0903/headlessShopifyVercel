@@ -23,13 +23,13 @@ const Pagination = ({ items, pageSize, currentPage, onPageChange }) => {
 
     if (pagesCount === 1) return null;
     const pages = Array.from({ length: pagesCount }, (_, i) => i + 1);
-    const buttonClass = 'text-center text-white p-2 rounded-full max-w-[40px] w-full';
+    const buttonClass = 'text-center text-white p-2 rounded-full max-w-[40px] w-full bg-indigo-200';
 
     return (
       <div className="my-10">
           <div className="flex justify-center gap-[6px] flex-wrap items-center">
               <button
-                className={`${buttonClass} bg-indigo-200 ${currentPage === 1 ? '' : 'hover:bg-indigo-400'}`}
+                className={`${buttonClass} ${currentPage === 1 ? '' : 'hover:bg-indigo-400'}`}
                 disabled={currentPage === 1}
                 onClick={() => prevNextChange('prev')}
               >
@@ -38,13 +38,13 @@ const Pagination = ({ items, pageSize, currentPage, onPageChange }) => {
               {pages.map((page) => (
                 <button
                   key={page}
-                  className={ `hover:bg-indigo-400 ${buttonClass} ${page === currentPage ? 'bg-indigo-400' : 'bg-indigo-200'}`}
+                  className={ `hover:bg-indigo-400 ${buttonClass} ${page === currentPage ? 'bg-indigo-400' : ''}`}
                   onClick={() => onPageChange(page)}>
                     {page}
                 </button>
               ))}
               <button
-                className={`${buttonClass} bg-indigo-200 ${currentPage === pagesCount ? '' : 'hover:bg-indigo-400'}`}
+                className={`${buttonClass} ${currentPage === pagesCount ? '' : 'hover:bg-indigo-400'}`}
                 disabled={currentPage === pagesCount}
                 onClick={() => prevNextChange('next')}
               >

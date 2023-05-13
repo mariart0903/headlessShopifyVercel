@@ -7,7 +7,6 @@ import {goToCheckout} from "../../utils";
 const CartDrawer = () => {
     const dispatch = useDispatch();
     const checkout = useSelector((state) => state.checkout);
-    console.log(checkout);
 
     useEffect(() => {
       document.addEventListener('click', handleBodyClick, { capture: true });

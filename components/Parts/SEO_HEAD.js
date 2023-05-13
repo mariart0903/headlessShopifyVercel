@@ -11,7 +11,7 @@ export default function SeoHead() {
     const socialTitle = SEOData?.seo_social_title || WEBSITE_NAME;
     const socialDescription = SEOData?.seo_social_description || WEBSITE_NAME;
 
-    console.log(socialImage);
+    console.log(socialImage?.transformedSrc);
     return (
       <Head>
           <title>{ title }</title>

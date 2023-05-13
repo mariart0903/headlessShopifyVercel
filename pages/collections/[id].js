@@ -1,16 +1,54 @@
-import {wrapper} from "../../store/store";
 import {storefront} from "../../utils";
-import {singleCollectionQuery, } from "../../utils/queries";
+import {filteredCollectionQuery, singleCollectionQuery,} from "../../utils/queries";
 import ProductCard from "../../components/ProductComponents/ProductCard";
 import parse from 'html-react-parser';
-import React, {useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Image from "next/image";
 import Pagination from "../../components/Parts/Pagination.js";
+import Facets from "../../components/ProductComponents/Facets.js";
+import { useRouter } from 'next/router';
 
-const Collection = ({collection}) => {
+const Collection = () => {
+  const router = useRouter();
+  const { id } = router.query;
   const [currentPage, setCurrentPage] = useState(1);
+  const [collection, setCollection] = useState({});
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const pageSize = 9;
-  const { title, descriptionHtml, products, image: {url: imageUrl, altText: imageAlt} } = collection;
+
+  const { title, descriptionHtml, products, image: {url: imageUrl, altText: imageAlt} = {}, handle, } = collection;
+
+  useEffect(() => {
+    const getCollectionData = async () => {
+      const { data: { collection } } = await storefront(singleCollectionQuery, { id: 'gid://shopify/Collection/' + id , filters: selectedFilters});
+      setCollection(collection);
+    };
+    if(id) getCollectionData();
+  }, [id]);
+
+  useEffect(() => {
+    const getFilteredCollectionData = async () => {
+        const { data: { collection } } = await storefront(filteredCollectionQuery, { handle: handle , filters: selectedFilters});
+        setCollection(collection);
+    };
+    if(selectedFilters?.length > 0) {
+        getFilteredCollectionData();
+    }
+  }, [selectedFilters]);
+
+  const getPriceRange = useCallback(() => {
+    const range = {minPrice: 0, maxPrice: 0};
+    products?.edges?.map((product) => {
+      if(parseFloat(product.node.priceRange.minVariantPrice.amount) < range.minPrice || range.minPrice === 0) {
+        range.minPrice = parseFloat(product.node.priceRange.minVariantPrice.amount);
+      }
+      if(parseFloat(product.node.priceRange.maxVariantPrice.amount) > range.maxPrice) {
+        range.maxPrice = parseFloat(product.node.priceRange.maxVariantPrice.amount);
+      };
+    });
+
+    return range;
+  }, [collection]);
 
   const onPageChange = (page) => {
     setCurrentPage(page);
@@ -26,8 +64,9 @@ const Collection = ({collection}) => {
     })
   };
 
+  if (!collection) return (<div>Loading...</div>);
   return <div>
-    <div className="relative overflow-hidden bg-white rounded-2xl  mb-8">
+    <div className="relative overflow-hidden bg-white rounded-2xl mb-8">
       <div className="lg:w-1/2 pl-4">
         <div className="relative z-10 bg-white">
           <svg
@@ -52,37 +91,52 @@ const Collection = ({collection}) => {
         </div>
       </div>
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <div className="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full relative">
-          <Image
-            src={imageUrl}
-            alt={imageAlt}
-            layout='fill'
-            objectFit='cover'
-            objectPosition='center'
-            loading="eager" />
-        </div>
+        {imageUrl && (
+          <div className="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full relative">
+            <Image
+              src={imageUrl || ''}
+              alt={imageAlt}
+              layout='fill'
+              objectFit='cover'
+              objectPosition='center'
+              loading="eager" />
+          </div>
+        ) }
       </div>
     </div>
 
-    {products &&
-      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:gap-x-8 pb-12">
-        {renderProducts()}
+    <div className="flex flex-wrap">
+      <div className="w-1/5">
+        <Facets
+          collectionHandle={handle}
+          priceRange={getPriceRange()}
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters} />
       </div>
-    }
-    <Pagination
-      items={products?.edges?.length}
-      currentPage={currentPage}
-      pageSize={pageSize}
-      onPageChange={onPageChange}
-    />
+      <div className="w-4/5">
+        {products &&
+          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:gap-x-8 pb-12">
+            {renderProducts()}
+          </div>
+        }
+        <Pagination
+          items={products?.edges?.length}
+          currentPage={currentPage}
+          pageSize={pageSize}
+          onPageChange={onPageChange}
+        />
+      </div>
+    </div>
   </div>;
 }
 
 export default Collection;
 
+/*
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async ({ req, res, query}) => {
     const { data: { collection } } = await storefront(singleCollectionQuery, { id: 'gid://shopify/Collection/' + query.id });
+
 
     return {
       props: {
@@ -90,3 +144,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
       }
     }
   })
+*/

@@ -115,6 +115,7 @@ export const singleCollectionQuery = `query getCollectionById($id: ID!) {
   collection(id: $id) {
     title
     descriptionHtml
+    handle
     image {
       url
       altText
@@ -128,6 +129,48 @@ export const singleCollectionQuery = `query getCollectionById($id: ID!) {
           id,
           priceRange {
             minVariantPrice {
+              amount
+            }
+            maxVariantPrice {
+              amount
+            }
+          }
+          images(first: 1) {
+            edges {
+              node {
+                transformedSrc
+                altText
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
+export const filteredCollectionQuery = `query getCollectionById($handle: String!, $filters: [ProductFilter!] ) {
+  collection(handle: $handle) {
+    title
+    descriptionHtml
+    handle
+    image {
+      url
+      altText
+    }
+    products(first: 100, filters: $filters) {
+      edges {
+        node {
+          title,
+          handle,
+          tags,
+          id,
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+            maxVariantPrice {
               amount
             }
           }
@@ -223,4 +266,21 @@ export const getRecommendedProductsQuery = `query getRecProductsByID($productId:
       }
 }`;
 
-export const getDiscounts = ``;
+export const getCollectionFacets = `query Facets($handle: String!) {
+  collectionByHandle(handle: $handle) {
+    handle
+    products(first: 100) {
+      filters {
+        id
+        label
+        type
+        values {
+          id
+          label
+          count
+          input
+        }
+      }
+    }
+  }
+}`;

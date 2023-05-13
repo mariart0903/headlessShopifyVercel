@@ -20,7 +20,7 @@ function ProductCard(props) {
             <a className={`group shadow-2xl p-4 rounded-xl bg-indigo-100 block ${ isSwiperSlide ? 'h-full' : ''}`} >
                 <div className={ `w-full ${ isSwiperSlide ? 'aspect-w-2' : 'aspect-w-3'} aspect-h-3 rounded-lg overflow-hidden` }>
                     <img
-                        src={image.transformedSrc}
+                        src={image.transformedSrc || ''}
                         alt={image.altText}
                         className="w-full h-full object-center object-cover group-hover:opacity-75"
                     />
