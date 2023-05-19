@@ -12,6 +12,7 @@ const Layout = ({ children }) => {
     const dispatch = useDispatch();
     const router = useRouter();
     const isCartPage = router.pathname === "/cart" ? true : false;
+    const isHomePage = router.pathname === "/" ? true : false;
 
     useEffect(() => {
         const checkout_id = localStorage.getItem("checkout_id");
@@ -47,10 +48,10 @@ const Layout = ({ children }) => {
             <Search />
             { !isCartPage ? <CartDrawer /> : null }
             <main
-              className="bg-center bg-repeat-y pt-8"
-              style={{backgroundImage: 'url("/images/lines2.png")'}}
+              className="bg-center bg-repeat-y pt-8 main-bg"
+              /*style={{backgroundImage: 'url("/images/lines2.png")'}}*/
             >
-                <div className={ 'px-4 sm:px-6 lg:px-8 container mx-auto ' }>{children}</div>
+                <div className={ `${isHomePage ? '' : 'px-4 sm:px-6 lg:px-8'} container mx-auto` }>{children}</div>
             </main>
         </div>
     )

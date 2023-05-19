@@ -15,6 +15,9 @@
 }
 
 @layer components{
+    .main-bg {
+        @apply bg-[url("/images/lines2.png")];
+    }
     .select_styles {
         @apply appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
     }
@@ -42,6 +45,21 @@
     .rte table tbody tr th{
         @apply px-6 py-4 font-medium text-gray-900 whitespace-nowrap;
     }
+    .my-masonry-grid {
+        @apply flex -ml-6 xl:-ml-8 w-auto;
+    }
+    .my-masonry-grid_column {
+        @apply pl-6 xl:pl-8;
+        background-clip: padding-box;
+    }
+    .my-masonry-grid_column > .my-masonry-grid_item {
+        @apply mb-6 xl:mb-8;
+    }
+    .my-masonry-grid_item:after {
+        @apply block absolute top-0 left-0 w-full h-full bg-white opacity-100 transition ease-in-out duration-300 z-10;
+        content: "";
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 }
 
 .swiper-button-prev, .swiper-button-next {
@@ -65,3 +83,4 @@
 .yotpo-filters-top-panel > div {
     padding-bottom: 6px!important;
 }
+

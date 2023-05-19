@@ -22,11 +22,13 @@ const NewHeader = () => {
           <nav className="mx-auto flex-wrap flex container items-center justify-between p-6 lg:px-8" aria-label="Global">
               <div className="mb-4 w-full flex items-center justify-center">
                   <span className="sr-only">Workflow</span>
-                  <img
-                    className="h-16 w-auto"
-                    src="https://cdn.shopify.com/s/files/1/0684/4874/7817/files/Screenshot_2022-03-20_192841-removebg-preview_2.webp"
-                    alt=""
-                  />
+                  <Link href={ '/' } prefetch={ false }>
+                      <img
+                        className="h-16 w-auto cursor-pointer"
+                        src="https://cdn.shopify.com/s/files/1/0684/4874/7817/files/Screenshot_2022-03-20_192841-removebg-preview_2.webp"
+                        alt=""
+                      />
+                  </Link>
               </div>
               <div className="flex lg:hidden">
                   <button
@@ -51,13 +53,17 @@ const NewHeader = () => {
                           <ShoppingBagIcon className="h-7 w-7 text-white"/>
                       </a>
                   </Link>
-
-                  <a
+                  <Link href={"https://glowupshinemoment.myshopify.com/account/login" } prefetch={ false }>
+                    <a className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50">
+                        Account
+                    </a>
+                  </Link>
+                {/*  <a
                     href="@/components/Layout/NewHeader#"
                     className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
                   >
                       Account
-                  </a>
+                  </a>*/}
               </div>
           </nav>
           { collectionsItems &&

@@ -24,6 +24,32 @@ export const productsQuery = `query Products {
   }
 }`;
 
+export const HPproductsQuery = `query Products {
+  products(first: 12) {
+    edges {
+      node {
+        title,
+        handle,
+        tags,
+        id,
+        priceRange {
+          minVariantPrice {
+            amount
+          }
+        }
+        images(first: 1) {
+          edges {
+            node {
+              transformedSrc
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
+
 export const singleProductQuery = `query getProductById($id: ID!) {
     product(id: $id) {
         id
