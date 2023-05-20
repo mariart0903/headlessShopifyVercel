@@ -44,6 +44,7 @@ const Collection = (props) => {
     } else {
       getCollectionData();
     }
+    setCurrentPage(1);
   }, [selectedFilters]);
 
   const getPriceRange = useCallback(() => {
