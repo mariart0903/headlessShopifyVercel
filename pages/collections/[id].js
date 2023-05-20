@@ -36,7 +36,8 @@ const Collection = (props) => {
 
   useEffect(() => {
     setCollection(intialValuesCollection);
-  }, [collection, router]);
+    setSelectedFilters([]);
+  }, [router]);
 
   useEffect(() => {
     if(selectedFilters?.length > 0) {
