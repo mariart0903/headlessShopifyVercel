@@ -56,7 +56,7 @@ function Product ({product, recommendedProducts}) {
         variants,
         options,
         id,
-    } = product;
+    } = product || {};
 
     const SEOValues={
         seo_title: title,
