@@ -39,7 +39,6 @@ const Collection = (props) => {
   }, [collection, router]);
 
   useEffect(() => {
-    console.log(selectedFilters);
     if(selectedFilters?.length > 0) {
         getFilteredCollectionData();
     } else {

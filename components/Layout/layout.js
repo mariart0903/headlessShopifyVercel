@@ -15,11 +15,7 @@ const Layout = ({ children }) => {
     const isHomePage = router.pathname === "/" ? true : false;
 
     useEffect(() => {
-        console.log('yotpo init');
         if (typeof window.yotpo !== "undefined") {
-/*
-            window.yotpo.initWidgets();
-*/
             window.yotpo.refreshWidgets();
         }
     }, [router, children]);

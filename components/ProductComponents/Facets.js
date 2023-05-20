@@ -18,7 +18,6 @@ const Facets = (props) => {
     }, [collectionHandle]);
 
     const handleFacetClick = (e) => {
-        console.log(e.target.dataset.input);
         const copySelectedFilters = _.cloneDeep(selectedFilters);
         let indexFound = null;
         copySelectedFilters?.forEach((filter, idx) => {

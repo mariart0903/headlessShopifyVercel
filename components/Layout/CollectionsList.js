@@ -1,17 +1,28 @@
 import {useSelector} from "react-redux";
-import { Fragment } from 'react';
+import {Fragment, useEffect} from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import Link from "next/link";
 import { ChevronDownIcon } from '@heroicons/react/solid';
 import {COLLECTIONS_ROUTE} from "../../utils/constants";
+import {useRouter} from "next/router";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-
 const CollectionsList = () => {
   const collectionsItems = useSelector((state) => state?.menu?.menuItems?.items);
+  const { asPath } = useRouter();
+
+  useEffect(() => {
+    if(document) {
+      const popBtn = document?.querySelector('.pop-btn[aria-expanded="true"]');
+      if(popBtn) {
+        popBtn.click();
+      }
+    }
+  }, [asPath]);
+
   return <>
     { collectionsItems &&
       <Popover.Group className="hidden lg:flex lg:gap-x-12">
@@ -25,7 +36,7 @@ const CollectionsList = () => {
                       open
                         ? 'border-white text-white'
                         : 'border-transparent text-gray-800',
-                      'relative z-10 -mb-px flex items-center border-b-2 pt-px text-md font-medium transition-colors duration-200 ease-out'
+                      'pop-btn relative z-10 -mb-px flex items-center border-b-2 pt-px text-md font-medium transition-colors duration-200 ease-out'
                     )}
                   >
                     <p className="text-lg">{collection.title}</p>
