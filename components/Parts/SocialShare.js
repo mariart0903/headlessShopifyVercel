@@ -22,7 +22,7 @@ const SocialShare = (props) => {
     const SEOData = React.useContext(SEOContext);
     const socialTitle = SEOData?.seo_social_title || '';
     const socialDescription = SEOData?.seo_social_description || '';
-    const url = `${STOREFRONT_ROUTE}${PRODUCTS_ROUTE}/${id.replace('gid://shopify/Product/', '')}`;
+    const url = `${STOREFRONT_ROUTE}${PRODUCTS_ROUTE}/${id?.replace('gid://shopify/Product/', '')}`;
 
     return (
         <div className="flex flex-row justify-center">
