@@ -16,23 +16,28 @@ const Collection = () => {
   const [selectedFilters, setSelectedFilters] = useState([]);
   const pageSize = 9;
 
-  const { title, descriptionHtml, products, image: {url: imageUrl, altText: imageAlt} = {}, handle, } = collection;
+  const { title, descriptionHtml, products, image: {url: imageUrl, altText: imageAlt} = {}, handle, } = collection || {};
+
+  const getCollectionData = async () => {
+    const { data: { collection } } = await storefront(singleCollectionQuery, { id: 'gid://shopify/Collection/' + id , filters: selectedFilters});
+    setCollection(collection);
+  };
+
+  const getFilteredCollectionData = async () => {
+    const { data: { collection } } = await storefront(filteredCollectionQuery, { handle: handle , filters: selectedFilters});
+    setCollection(collection);
+  };
 
   useEffect(() => {
-    const getCollectionData = async () => {
-      const { data: { collection } } = await storefront(singleCollectionQuery, { id: 'gid://shopify/Collection/' + id , filters: selectedFilters});
-      setCollection(collection);
-    };
     if(id) getCollectionData();
   }, [id]);
 
   useEffect(() => {
-    const getFilteredCollectionData = async () => {
-        const { data: { collection } } = await storefront(filteredCollectionQuery, { handle: handle , filters: selectedFilters});
-        setCollection(collection);
-    };
+    console.log(selectedFilters);
     if(selectedFilters?.length > 0) {
         getFilteredCollectionData();
+    } else {
+      getCollectionData();
     }
   }, [selectedFilters]);
 
