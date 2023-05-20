@@ -1,5 +1,10 @@
 import {storefront} from "../../utils";
-import {filteredCollectionQuery, singleCollectionQuery,} from "../../utils/queries";
+import {
+  filteredCollectionQuery,
+  getAllCollectionsQuery, getRecommendedProductsQuery,
+  singleCollectionQuery,
+  singleProductQuery,
+} from "../../utils/queries";
 import ProductCard from "../../components/ProductComponents/ProductCard";
 import parse from 'html-react-parser';
 import React, {useCallback, useEffect, useState} from "react";
@@ -8,11 +13,12 @@ import Pagination from "../../components/Parts/Pagination.js";
 import Facets from "../../components/ProductComponents/Facets.js";
 import { useRouter } from 'next/router';
 
-const Collection = () => {
+const Collection = (props) => {
+  const { collection: intialValuesCollection } = props;
   const router = useRouter();
   const { id } = router.query;
   const [currentPage, setCurrentPage] = useState(1);
-  const [collection, setCollection] = useState({});
+  const [collection, setCollection] = useState(intialValuesCollection);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const pageSize = 9;
 
@@ -27,10 +33,6 @@ const Collection = () => {
     const { data: { collection } } = await storefront(filteredCollectionQuery, { handle: handle , filters: selectedFilters});
     setCollection(collection);
   };
-
-  useEffect(() => {
-    if(id) getCollectionData();
-  }, [id]);
 
   useEffect(() => {
     console.log(selectedFilters);
@@ -111,14 +113,14 @@ const Collection = () => {
     </div>
 
     <div className="flex flex-wrap">
-      <div className="w-1/5">
+      <div className="w-full lg:w-1/5">
         <Facets
           collectionHandle={handle}
           priceRange={getPriceRange()}
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters} />
       </div>
-      <div className="w-4/5">
+      <div className="w-full lg:w-4/5">
         {products &&
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:gap-x-8 pb-12">
             {renderProducts()}
@@ -137,16 +139,24 @@ const Collection = () => {
 
 export default Collection;
 
-/*
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async ({ req, res, query}) => {
-    const { data: { collection } } = await storefront(singleCollectionQuery, { id: 'gid://shopify/Collection/' + query.id });
-
-
-    return {
-      props: {
-        collection: collection
-      }
+export async function getStaticProps(context) {
+  const { params: {id} } = context;
+  const { data: { collection } } = await storefront(singleCollectionQuery, { id: 'gid://shopify/Collection/' + id });
+  return {
+    props: {
+      collection: collection,
     }
-  })
-*/
+  }
+}
+
+
+export async function getStaticPaths() {
+  const { data: {collections: {edges} } } = await storefront(getAllCollectionsQuery);
+  const paths = edges.map(({ node }) => ({
+    params: { id: node.id.replace('gid://shopify/Collection/', '') },
+  }));
+  return {
+    paths,
+    fallback: true,
+  };
+}

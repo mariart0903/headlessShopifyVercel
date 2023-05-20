@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigation, Pagination, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import {getRecommendedProductsQuery, singleProductQuery} from "../../utils/queries";
+import {getRecommendedProductsQuery, productsQuery, singleProductQuery} from "../../utils/queries";
 import { storefront, getTags, formatPrice, checkIfObjectsAreEqual, goToCheckout } from "../../utils";
 import VariantSelector from "../../components/ProductComponents/VariantSelector";
 import {useDispatch, useSelector} from "react-redux";
@@ -334,14 +334,26 @@ function Product ({product, recommendedProducts}) {
 
 export default Product;
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    (store) => async ({ req, res, query}) => {
-        const { data: { product } } = await storefront(singleProductQuery, { id: 'gid://shopify/Product/' + query.id });
-        const { data:  { productRecommendations }} = await storefront(getRecommendedProductsQuery, { productId: 'gid://shopify/Product/' + query.id });
-        return {
-            props: {
-                product: product,
-                recommendedProducts: productRecommendations
-            }
+export async function getStaticProps(context) {
+    const { params: {id} } = context;
+    const { data: { product } } = await storefront(singleProductQuery, { id: 'gid://shopify/Product/' + id });
+    const { data:  { productRecommendations }} = await storefront(getRecommendedProductsQuery, { productId: 'gid://shopify/Product/' + id });
+    return {
+        props: {
+            product: product,
+            recommendedProducts: productRecommendations
         }
-    });
+    }
+}
+
+export const getStaticPaths = async () => {
+    const { data: { products: { edges } } } = await storefront(productsQuery);
+    const paths = edges.map(({ node }) => ({
+        params: { id: node.id.replace('gid://shopify/Product/', '') },
+    }));
+
+    return {
+        paths,
+        fallback: true,
+    };
+};

@@ -15,6 +15,16 @@ const Layout = ({ children }) => {
     const isHomePage = router.pathname === "/" ? true : false;
 
     useEffect(() => {
+        console.log('yotpo init');
+        if (typeof window.yotpo !== "undefined") {
+/*
+            window.yotpo.initWidgets();
+*/
+            window.yotpo.refreshWidgets();
+        }
+    }, [router, children]);
+
+    useEffect(() => {
         const checkout_id = localStorage.getItem("checkout_id");
         if(!checkout_id) {
             client.checkout.create().then(checkout => {

@@ -36,7 +36,7 @@ const Facets = (props) => {
     const renderFacets = () => {
         return filters?.map((filter, idx) => {
           if(filter.type === 'LIST') {
-              return <div key={idx} className="mb-[20px]">
+              return <div key={idx} className="mb-[10px] lg:mb-[20px]">
                   <h4>{filter.label}</h4>
                   <ul className="flex flex-wrap">{filter.values.map((value, idx) => {
                       let found = false;

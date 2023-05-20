@@ -28,7 +28,7 @@ const HeroSwiper = () => {
 				</div>
 			</SwiperSlide>
 			<SwiperSlide>
-				<div className="relative overflow-hidden pb-[30%]">
+				<div className="relative overflow-hidden pb-[70%] lg:pb-[50%] xl:pb-[30%]">
 					<Image
 					  src={ '/indexHero/hero2.jpg' }
 					  alt={""}
@@ -38,7 +38,7 @@ const HeroSwiper = () => {
 					  loading="eager" />
 				</div>
 			</SwiperSlide>
-			<SwiperSlide><div className="relative overflow-hidden pb-[30%]">
+			<SwiperSlide><div className="relative overflow-hidden pb-[70%] lg:pb-[50%] xl:pb-[30%]">
 				<Image
 				  src={ '/indexHero/hero3.jpg' }
 				  alt={""}
