@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 const ReviewsWidget = (props) => {
     const router = useRouter();
     const { product, price, images }= props;
-    const { id, title, handle, } = product;
+    const { id, title, handle, } = product || {};
     const strippedId = id?.replace('gid://shopify/Product/', '');
 
     return (

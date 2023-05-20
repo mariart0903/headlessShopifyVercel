@@ -18,7 +18,7 @@ import {PRODUCTS_ROUTE, STOREFRONT_ROUTE} from "../../utils/constants.js";
 const SocialShare = (props) => {
 
     const { product } = props;
-    const { id } = product;
+    const { id } = product || {};
     const SEOData = React.useContext(SEOContext);
     const socialTitle = SEOData?.seo_social_title || '';
     const socialDescription = SEOData?.seo_social_description || '';
