@@ -50,7 +50,7 @@ function Product ({product, recommendedProducts}) {
 
     const {
         descriptionHtml,
-        priceRange:{ minVariantPrice: { amount }} = {},
+        priceRange:{ minVariantPrice: { amount }={}} = {},
         tags,
         title,
         variants,
