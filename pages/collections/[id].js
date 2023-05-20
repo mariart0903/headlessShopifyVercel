@@ -18,7 +18,7 @@ const Collection = (props) => {
   const router = useRouter();
   const { id } = router.query;
   const [currentPage, setCurrentPage] = useState(1);
-  const [collection, setCollection] = useState(intialValuesCollection);
+  const [collection, setCollection] = useState({});
   const [selectedFilters, setSelectedFilters] = useState([]);
   const pageSize = 9;
 
@@ -33,6 +33,10 @@ const Collection = (props) => {
     const { data: { collection } } = await storefront(filteredCollectionQuery, { handle: handle , filters: selectedFilters});
     setCollection(collection);
   };
+
+  useEffect(() => {
+    setCollection(intialValuesCollection);
+  }, [collection, router]);
 
   useEffect(() => {
     console.log(selectedFilters);

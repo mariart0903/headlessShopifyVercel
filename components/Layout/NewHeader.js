@@ -10,12 +10,12 @@ import {useRouter} from "next/router";
 
 const NewHeader = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-    const router = useRouter();
+    const {asPath} = useRouter();
     const collectionsItems = useSelector((state) => state?.menu?.menuItems?.items);
 
     useEffect(() => {
         setMobileMenuOpen(false);
-    }, [router]);
+    }, [asPath]);
 
     return (
       <header className="bg-indigo-400">
