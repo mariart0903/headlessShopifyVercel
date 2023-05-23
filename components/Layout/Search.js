@@ -90,7 +90,7 @@ const Search = () => {
 				  </div>
 			  </div>
 			  {searchOpen && (
-				<div className="bg-indigo-400 z-[10] top-[100%] pt-2 pb-4 absolute w-full left-0">
+				<div className="bg-indigo-400 z-[90] top-[100%] pt-2 pb-4 absolute w-full left-0">
 					<div className="container mx-auto grid gap-[8px] md:gap-[12px] lg:gap-[16px] xl:gap-[20px] grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
 						{renderProducts()}
 					</div>
