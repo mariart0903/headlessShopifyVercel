@@ -1,11 +1,12 @@
 import React from 'react';
 import HeroSwiper from "../components/Parts/homepage/HeroSwiper";
 import ProductsList from "../components/ProductComponents/ProductsList";
-import CollectionsGrid from "../components/Parts/homepage/CollectionsGrid";
 import {wrapper} from "../store/store.js";
 import {storefront} from '../utils/index.js';
 import {getAllCollectionsQuery, HPproductsQuery} from "../utils/queries.js";
 import {setAllProducts} from "../store/productsSlice.js";
+import dynamic from "next/dynamic";
+const CollectionsGrid = dynamic(() => import('../components/Parts/homepage/CollectionsGrid'), { ssr: false });
 
 const Index = (props) => {
     const { collections } = props;

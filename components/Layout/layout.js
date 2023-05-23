@@ -6,7 +6,8 @@ import { client} from "../../utils/shopifyBuyClient";
 import { useDispatch } from "react-redux";
 import { setCheckout } from "../../store/checkoutSlice";
 import { useRouter } from "next/router";
-import Search from "./Search";
+import dynamic from "next/dynamic";
+const Search = dynamic(() => import('./Search'), { ssr: false });
 
 const Layout = ({ children }) => {
     const dispatch = useDispatch();

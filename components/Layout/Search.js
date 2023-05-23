@@ -3,12 +3,15 @@ import { storefront} from "../../utils/index";
 import { getProductByTitleQuery2 } from "../../utils/queries";
 import SearchItem from "../ProductComponents/SearchItem";
 import { useRouter} from "next/router";
+import { MicrophoneIcon } from '@heroicons/react/solid';
+import {startSpeechRecognition} from "../../utils/speechWebApi";
 
 const Search = () => {
 	const router = useRouter();
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 	const [searchOpen, setSearchOpen] = useState(false);
+	const [ isListening, setIsListening ] = useState(false);
 
 	useEffect(() => {
 		handleClearSearch();
@@ -43,6 +46,10 @@ const Search = () => {
 		setSearchResults([]);
 		setSearchOpen(false);
 	};
+	const handleMicClick = () => {
+		startSpeechRecognition(setSearchTerm, setIsListening);
+	};
+
 	const renderProducts = () => {
 		return searchResults.length > 0 ? searchResults?.map((product, idx) => {
 			return (
@@ -67,6 +74,9 @@ const Search = () => {
 						value={searchTerm}
 						onChange={handleChange}
 					  />
+					  <div onClick={ handleMicClick } className="absolute cursor-pointer top-[10px] right-[30px]">
+						  <MicrophoneIcon className={ `h-5 w-5 ${isListening ? 'text-gray-400' : ''}`}/>
+					  </div>
 					  <button type="button" onClick={ handleClearSearch } className="absolute top-[16px] right-[10px] ">
 						  <svg className="w-3 h-3 text-gray-500 dark:text-gray-400" viewBox="0 0 460.775 460.775" fill="currentColor">
 							  <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55
