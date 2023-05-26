@@ -1,30 +1,28 @@
-import react, {useRef, useEffect} from "react";
-import Iframe from 'react-iframe';
+import react, {useState, useEffect} from "react";
 
 const Auglio = () => {
-	/*	const iframeRef = useRef(null);
-		const iframeCurrent = iframeRef.current;
+	const [isOpen, setIsOpen] = useState(false);
 
-		useEffect(() => {
-			iframeCurrent?.addEventListener('load', handleIframeLoad);
-			return () => {
-				iframeCurrent?.removeEventListener('load', () => handleIframeLoad);
-			};
-		}, [iframeCurrent]);
+	useEffect(() => {
+		window.addEventListener('click', handleClose);
+		return () => {
+			window.removeEventListener('click', handleClose);
+		};
+	}, []);
 
-		const handleIframeLoad = () => {
-			const css = '<style type="text/css">' +
-				'#virtooal-mirror #liveInfoSq,\n' +
-				'#virtooal-mirror #liveInfoSqOn {\n' +
-				'  display: block !important;\n' +
-				'}' +
-				'</style>';
-			iframeCurrent?.contentWindow?.document?.head.append(css)
-			console.log('iframe loaded');
-			console.log(iframeCurrent?.contentWindow?.document?.head.append(css));
-		};*/
+	const handleClose = e => {
+		if (e.target.id === 'virtooal-modal-close') {
+			handleShow();
+		}
+	};
+	
+	const handleShow = () => {
+		setIsOpen(!isOpen);
+	};
+
 	return <>
-		<div id="virtooal-mirror-fix-container" className="virtooal-main-modal">
+		<button type="button" onClick={handleShow}>Show Mirror</button>
+		{isOpen && <div id="virtooal-mirror-fix-container" className="virtooal-main-modal">
 			<div id="virtooal-mirror-fix-content" className="virtooal-main-modal-content">
 				<div id="virtooal-mirror-title">
 					<div>
@@ -50,7 +48,7 @@ const Auglio = () => {
 						vspace="0" marginHeight="0" marginWidth="0" allow="camera"></iframe>
 				</div>
 			</div>
-		</div>
+		</div>}
 	</>
 };
 
