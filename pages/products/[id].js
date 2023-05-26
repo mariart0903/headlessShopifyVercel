@@ -7,13 +7,14 @@ import VariantSelector from "../../components/ProductComponents/VariantSelector"
 import {useDispatch, useSelector} from "react-redux";
 import {addVariantToCart, setCartOpen,} from "../../store/checkoutSlice";
 import {client} from "../../utils/shopifyBuyClient";
-import {wrapper} from "../../store/store";
 import parse from 'html-react-parser';
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
 import SocialShare from "../../components/Parts/SocialShare.js";
-
+import ReviewsWidget from "../../components/Yotpo/ReviewsWidget";
+/*
 const ReviewsWidget = dynamic(() => import('../../components/Yotpo/ReviewsWidget'), {ssr: false});
+*/
 const Auglio = dynamic(() => import('../../components/Parts/auglio/Auglio.js'), {ssr: false});
 
 // Import Swiper styles
