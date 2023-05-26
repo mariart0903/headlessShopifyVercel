@@ -1,4 +1,5 @@
 import react, {useState, useEffect} from "react";
+import AuglioLogo from "./AuglioLogo";
 
 const Auglio = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -12,16 +13,21 @@ const Auglio = () => {
 
 	const handleClose = e => {
 		if (e.target.id === 'virtooal-modal-close') {
-			handleShow();
+			setIsOpen(false);
 		}
 	};
-	
+
 	const handleShow = () => {
 		setIsOpen(!isOpen);
 	};
 
 	return <>
-		<button type="button" onClick={handleShow}>Show Mirror</button>
+		<button type="button" onClick={handleShow}>
+			<div className="flex items-center justify-center bg-gray-600 gap-2 rounded-full p-4">
+				<span className="text-white font-bold tracking-wider">Oglinda Virtuala</span>
+				<AuglioLogo/>
+			</div>
+		</button>
 		{isOpen && <div id="virtooal-mirror-fix-container" className="virtooal-main-modal">
 			<div id="virtooal-mirror-fix-content" className="virtooal-main-modal-content">
 				<div id="virtooal-mirror-title">
