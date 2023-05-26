@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import SocialShare from "../../components/Parts/SocialShare.js";
 const ReviewsWidget = dynamic(() => import('../../components/Yotpo/ReviewsWidget'), { ssr: false });
+const Auglio = dynamic(() => import('../../components/Parts/auglio/Auglio.js'), { ssr: false });
 
 // Import Swiper styles
 import 'swiper/css';
@@ -326,6 +327,7 @@ function Product ({product, recommendedProducts}) {
                             <ReviewsWidget product={product} price={selectedVariant?.amount} images={productImages}/>
                         </div>
                     </main>
+                    <Auglio />
                 </div>
             </SEOContext.Provider>
         </div>

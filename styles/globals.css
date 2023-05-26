@@ -3,7 +3,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -147,7 +147,7 @@ a {
   transition: transform 0.15s ease-in-out;
 }
 
-@media (pointer:coarse) {
+@media (pointer: coarse) {
   .Cart {
     width: 100%;
   }
@@ -212,3 +212,1052 @@ a {
   color: black;
 }
 
+
+#auglio-link {
+  position: absolute;
+  left: 0;
+  top: calc(50% - 20px);
+  z-index: 90;
+  background: #FFF;
+  color: #000000;
+  padding: 5px 2px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#auglio-link.fullscreen {
+  position: fixed;
+  top: auto;
+  left: auto;
+  right: 25px;
+  bottom: -7px;
+  background: transparent;
+  color: #FFF;
+  transform: rotate(90deg);
+}
+
+.virtooal-main-modal-minimized #auglio-link {
+  display: none;
+}
+
+#auglio-link.fullscreen {
+  display: none;
+}
+
+.virtooal-main-modal #auglio-link.fullscreen {
+  display: block;
+}
+
+
+@font-face {
+  font-family: 'icomoonvirtooal';
+  src: url('https://mirror.auglio.com/assets/logo/icomoonvirtooal.eot?ghhuk3');
+  src: url('https://mirror.auglio.com/assets/logo/icomoonvirtooal.eot?ghhuk3#iefix') format('embedded-opentype'),
+  url('https://mirror.auglio.com/assets/logo/icomoonvirtooal.ttf?ghhuk3') format('truetype'),
+  url('https://mirror.auglio.com/assets/logo/icomoonvirtooal.woff?ghhuk3') format('woff'),
+  url('https://mirror.auglio.com/assets/logo/icomoonvirtooal.svg?ghhuk3#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-virtooal-"],
+[class*=" icon-virtooal-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoonvirtooal' !important;
+  speak: none !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1 !important;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* hide elements and show them when css site is loaded */
+.hide-until-load {
+  display: block;
+}
+
+/* svg reboot from bootstrap */
+svg {
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+/* The Modal (background) */
+.virtooal-main-modal {
+  left: 0 !important;
+  top: 0 !important;
+  position: absolute;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  /* Full width */
+  height: 100% !important;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0) !important;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  /* Black w/ opacity */
+}
+
+.virtooal-modal-minimize-ic {
+  background-color: #7982B5;
+}
+
+.virtooalLogoL {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 12px;
+  display: none;
+  width: 20px;
+}
+
+.virtooal-main-modal .virtooalLogoL {
+  display: block;
+}
+
+.virtooal-hidden {
+  display: none !important;
+}
+
+.virtooal-main-modal-closed {
+  height: 1px !important;
+  opacity: 0;
+}
+
+/* Modal Content/Box */
+.virtooal-main-modal-content {
+  /* background-color: #fff; /
+  margin: 1% auto;
+  /* 15% from the top and centered */
+  width: 98%;
+  /* Could be more or less, depending on screen size */
+  max-width: 1200px;
+
+}
+
+#virtooal-mirror-fix-content {
+  border-radius: 10px;
+  position: relative;
+}
+
+#virtooal-modal-close-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0) linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+  right: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 45px;
+}
+
+
+#virtooal-modal-close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 10px;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.virtooal-main-modal-minimized #virtooal-modal-close-container {
+  display: none;
+}
+
+.virtooal-main-modal-minimized .virtooal-modal-close {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .virtooal-main-modal-minimized .icon-virtooal-logo {
+    transform: scale(0.8);
+  }
+}
+
+.virtooal-main-modal #virtooal-mirror-title {
+  height: 40px;
+  padding-top: 15px;
+}
+
+.virtooal-main-modal #virtooal-mirror-title .virtooal-logo-ic {
+  top: 5px;
+}
+
+.virtooal-main-modal .virtooal-menu-btns.virtooal-close {
+  top: 7px;
+}
+
+#virtooal-mirror-fix-iframe {
+  background: #000;
+  /* background: url(//mirror.auglio.com/assets/img/loading.gif) center center no-repeat; */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#virtooal-mirror-fix-container {
+  background-color: rgba(0, 0, 0, 0);
+  /* background-color: #fff; */
+  position: fixed;
+  border-radius: 15px;
+  bottom: 5px;
+  z-index: 16000003;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 2px 6px;
+}
+
+#virtooal-mirror-fix-container.virtooal-main-modal {
+  border-radius: 0px;
+}
+
+
+#virtooal-mirror-title {
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.virtooal-main-modal #virtooal-mirror-title {
+  left: 40px;
+  right: 40px;
+}
+
+.virtooal-main-modal #virtooal-mirror-title {
+  top: -30px;
+}
+
+.virtooal-main-modal .virtooal-logo-ic {
+  top: -4px;
+}
+
+#virtooal-mirror-fix-iframe {
+  border: none;
+
+}
+
+#virtooal-mirror-fix-iframe iframe {
+  display: block;
+  line-height: 0;
+  margin-bottom: 0px;
+}
+
+.virtooal-tL-inside {
+  background: #FFF;
+  display: inline-block;
+  height: 18px;
+  margin-top: -4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 1px 12px 1px 8px;
+  border-top-left-radius: 5px;
+}
+
+.virtooal-tR-inside {
+  background: #FFF;
+  display: inline-block;
+  height: 18px;
+  margin-top: -4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 1px 8px 1px 12px;
+  border-top-right-radius: 5px;
+}
+
+#virtooal-mirror-title .virtooal-tL {
+  float: left;
+  width: 50%;
+  margin-top: -5px;
+  text-align: right;
+  padding-right: 22px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+#virtooal-mirror-title .virtooal-tR {
+  float: right;
+  width: 50%;
+  margin-top: -5px;
+  text-align: left;
+  padding-left: 22px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+#virtooal-mirror-fix-container.virtooal-main-modal-minimized {
+  bottom: 100px;
+  background-color: transparent;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.virtooal-main-modal-minimized #virtooal-mirror-title {
+  background-color: transparent !important;
+  color: transparent !important;
+}
+
+.virtooal-main-modal-minimized .virtooal-menu-btns,
+.virtooal-main-modal-minimized #virtooal-mirror-title .virtooal-tR,
+.virtooal-main-modal-minimized #virtooal-mirror-title .virtooal-tL {
+  display: none !important;
+}
+
+.virtooal-menu-btns {
+  position: absolute;
+  display: inline-block;
+  height: 23px;
+  width: 23px;
+
+  background: no-repeat url(https://mirror.auglio.com/assets/img/icons/ic-virtooal-menuDark2.svg?v=2) 0 0px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.virtooal-menu-btns.virtooal-close {
+  background-position: 4px 5px;
+  top: 0;
+  right: 0;
+}
+
+.virtooal-menu-btns.virtooal-expand {
+  background: none;
+  color: #FFF;
+  top: 13px;
+  left: 15px;
+}
+
+.virtooal-menu-btns.virtooal-expand #collapse {
+  display: none;
+}
+
+.virtooal-menu-btns.virtooal-expand.virtooal-collapse #collapse {
+  display: block;
+}
+
+.virtooal-menu-btns.virtooal-expand.virtooal-collapse #expand {
+  display: none;
+}
+
+
+/*.virtooal-collapse {background-position: 0 -72px !important;}  */
+.virtooal-menu-btns.virtooal-minimize {
+  background-position: 0 -24px;
+}
+
+.virtooal-menu-btns.virtooal-close:hover {
+  background-position: 4px -13px;
+  -webkit-transition-property: none;
+  -moz-transition-property: none;
+  -o-transition-property: none;
+  transition-property: none;
+}
+
+.virtooal-main-iframe-hidden {
+  visibility: hidden;
+  display: none;
+}
+
+
+#virtooal-mirror-title .virtooal-logo-ic {
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  top: -20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: #000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transition: transform .2s ease-in-out;
+  border: 1.5px solid #FFF;
+}
+
+#virtooal-mirror-title .virtooal-logo-ic #virtooal-modal-minimize-ic {
+  padding-top: 7px;
+  font-size: 22px;
+}
+
+#virtooal-mirror-title .virtooal-logo-ic:hover {
+  transform: scale(1.1);
+}
+
+.btn:active,
+.btn.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.canvas-buttons .btn-default .menubtns_new > div.icon-bg.icon-fb {
+  background-image: url('/assets/img/icons/ic-facebook-white.svg');
+}
+
+#virtooal-modal-minimize-text {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: -43px;
+  color: #fff;
+  background-color: #000000;
+  border-radius: 15px;
+  padding: 8px 14px;
+  white-space: nowrap;
+  font-weight: normal;
+  line-height: 100%;
+}
+
+#virtooal-mirror-title .virtooal-logo-ic {
+  background-color: #000000;
+}
+
+.virtooal-main-modal-minimized #virtooal-modal-minimize {
+  background-color: #7982B5;
+
+}
+
+.virtooal-main-modal-minimized #virtooal-mirror-title {
+  width: 190px;
+}
+
+#virtooal-mirror-title a {
+  cursor: default;
+  color: #000000;
+  display: inline;
+}
+
+#virtooal-mirror-fix-iframe iframe {
+  border-radius: 10px;
+}
+
+#virtooal-mirror-title a:hover div {
+  color: #000000;
+}
+
+.virtooal-main-modal-minimized #virtooal-mirror-title .virtooal-logo-ic {
+  background-image: none;
+  background-color: #000000;
+  width: 55px;
+  height: 55px;
+  border-radius: 70px;
+
+}
+
+.virtooal-main-modal-minimized #virtooal-mirror-title .virtooal-logo-ic #virtooal-modal-minimize-ic {
+  display: inline-block;
+  color: #000000;
+  font-size: 32px;
+  /* padding-top: 10px; */
+  width: 100%;
+  height: 100%;
+}
+
+.icon-virtooal-logo {
+  color: #FFF;
+}
+
+.virtooal-main-modal-minimized #virtooal-modal-minimize-text {
+  display: block;
+}
+
+#virtooal-modal-minimize-text:after,
+#virtooal-modal-minimize-text:before {
+  top: 98%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+#virtooal-modal-minimize-text:after {
+
+  border-top-color: #000000;
+  border-width: 5px;
+  margin-left: -5px;
+}
+
+#virtooal-modal-minimize-text:before {
+
+  border-top-color: #000000;
+  border-width: 8px;
+  margin-left: -8px;
+}
+
+
+/* mobile */
+@media only screen and (max-width: 768px) {
+  .virtooal-main-modal #virtooal-mirror-fix-iframe {
+    padding: 0px 0;
+  }
+
+  #virtooal-modal-minimize-text {
+    display: none ! important;
+  }
+
+  .virtooal-main-modal-minimized #virtooal-mirror-title .virtooal-logo-ic {
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 45px !important;
+    right: auto;
+    left: 10px;
+    top: auto;
+    bottom: -70px;
+  }
+
+  .virtooal-main-modal-minimized.align-to-right #virtooal-mirror-title .virtooal-logo-ic {
+    right: 10px;
+    left: auto;
+    top: auto;
+    bottom: -70px;
+  }
+
+  .virtooal-main-modal-minimized #virtooal-mirror-title .virtooal-logo-ic #virtooal-modal-minimize-ic {
+    font-size: 20px !important;
+    padding-top: 2px !important;
+  }
+
+  /* iconShowMobile */
+  .virtooal-main-modal-minimized #virtooal-modal-minimize-text {
+    display: block !important;
+  }
+
+  #virtooal-mirror-fix-container {
+    left: 40px !important;
+  }
+
+  #virtooal-mirror-fix-container.virtooal-main-modal {
+    left: 0px !important;
+  }
+
+  .virtooal-main-modal-minimized #virtooal-modal-minimize-text {
+    font-size: 10px;
+    top: -29px;
+    padding: 5px 10px;
+  }
+
+  .virtooal-main-modal-minimized #virtooal-modal-minimize-text:before {
+    border-width: 6px;
+    margin-left: -6px;
+  }
+
+  .virtooal-main-modal-minimized #virtooal-mirror-title .virtooal-logo-ic {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 40px !important;
+  }
+
+  .virtooal-main-modal-minimized #virtooal-mirror-title .virtooal-logo-ic #virtooal-modal-minimize-ic {
+    font-size: 16px !important;
+  }
+
+}
+
+
+/* partners */
+.oftalens.button {
+  background-color: #9C8DCE;
+  margin-left: 0;
+}
+
+.oftalens:focus {
+  outline: none;
+}
+
+.oftalens.active {
+  box-shadow: 0 0 8px #000000;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  background-color: #8373b7;
+}
+
+.krasotika.btn-primary-reviewsadv {
+  background-color: #52dedb !important;
+  border-color: #52dedb !important;
+}
+
+.krasotika.btn-primary-reviewsadv:hover,
+.krasotika.btn-primary-reviewsadv.active {
+  background-color: #3d9e9c !important;
+  border-color: #3d9e9c !important;
+}
+
+.krasotika.virtooal-tryon-btn-round {
+  border-radius: 50%;
+  background-color: #52dedb;
+  color: #fff;
+  border: 1px solid #52dedb;
+  width: 52px;
+  font-size: 18px;
+  height: 52px;
+  padding: 5px 5px;
+  display: block;
+  -webkit-transition-duration: 0.3s;
+  /* Safari */
+  transition-duration: 0.3s;
+}
+
+.krasotika.virtooal-tryon-btn-round:hover,
+.krasotika.virtooal-tryon-btn-round.active {
+  background-color: #fff;
+  color: #52dedb;
+}
+
+.happyhairshop.virtooal-tryon-btn-round {
+  border-radius: 50%;
+  border: 1px solid #DA413D;
+  width: 45px;
+  font-size: 18px;
+  height: 45px;
+  line-height: 150%;
+  padding: 5px 5px;
+  display: block;
+  -webkit-transition-duration: 0.3s;
+  /* Safari */
+  transition-duration: 0.3s;
+  background-color: #fff;
+  color: #DA413D;
+}
+
+.happyhairshop.virtooal-tryon-btn-round:hover,
+.happyhairshop.virtooal-tryon-btn-round.active {
+  background-color: #DA413D;
+  color: #fff;
+}
+
+.virtooal-tryon-btn:focus {
+  outline: none;
+}
+
+.shopify.virtooal-tryon-btn-round {
+  border-radius: 50%;
+  border: 1px solid #000000;
+  width: 45px;
+  font-size: 18px;
+  height: 45px;
+  line-height: 150%;
+  padding: 5px 5px;
+  display: block;
+  -webkit-transition-duration: 0.3s;
+  /* Safari */
+  transition-duration: 0.3s;
+  background-color: #fff;
+  color: #000000;
+  margin: 0 auto;
+}
+
+.shopify.virtooal-tryon-btn-round .icon-virtooal-logo-white {
+  margin: 0;
+}
+
+.shopify.virtooal-tryon-btn-round:hover,
+.shopify.virtooal-tryon-btn-round.active {
+  background-color: #000000;
+  color: #fff;
+}
+
+.virtooal-tryon-btn:focus {
+  outline: none;
+}
+
+.shopify2.virtooal-tryon-btn {
+  opacity: 0.7;
+}
+
+.shopify2.virtooal-tryon-btn:hover,
+.shopify2.virtooal-tryon-btn.active {
+  opacity: 1;
+}
+
+.shopify2.part977.virtooal-tryon-btn {
+  background-color: #548DD4 !important;
+  opacity: 1;
+  border: none;
+  color: #fff;
+}
+
+.shopify2.part977.virtooal-tryon-btn:hover {
+  opacity: 0.7;
+}
+
+.shopifyCatalog.virtooal-tryon-btn:hover {
+  border-color: #7c2599;
+  background-color: #7c2599;
+}
+
+/**
+*   Personalized Shopping
+*/
+#virtooal-image-switcher {
+  margin-bottom: 20px;
+
+}
+
+
+.virtooal-image-switcher-content {
+  background: #F7F7F7;
+  display: block;
+  padding: 40px;
+  position: relative;
+  text-align: center;
+  clear: both;
+}
+
+.virtooal-image-switcher:before,
+.virtooal-image-switcher:after,
+.virtooal-image-switcher-content:before,
+.virtooal-image-switcher-content:after {
+  content: '';
+  display: block;
+  position: relative;
+  clear: both;
+}
+
+#virtooal-image-switcher .virtooal-image-switcher-info {
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+
+#virtooal-image-switcher button {
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 3px 20px;
+  background: #000000;
+  margin: 10px 10px 10px 0;
+  outline: none;
+  line-height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#virtooal-image-switcher button:hover {
+  background-color: #f3f3f3;
+  outline: none;
+}
+
+#virtooal-image-switcher button:focus {
+  outline: none;
+}
+
+#virtooal-image-switcher button.active {
+  color: #000000;
+  background-color: #000000;
+}
+
+#virtooal-image-switcher button.active:hover {
+  color: #000000;
+  background-color: #272727;
+}
+
+#virtooal-image-switcher .virtooal-image-switcher-info {
+  text-align: center;
+  display: block;
+  padding: 0 20px;
+  margin: 0 0 20px 0;
+  font-size: 14px;
+}
+
+#virtooal-image-switcher .virtooal-image-switcher-info b {
+  font-weight: 400;
+  display: block;
+}
+
+#virtooal-image-switcher .virtooal-model-faces-wrapper {
+  display: block;
+  float: none;
+  text-align: center;
+  padding: 0 20px;
+}
+
+#virtooal-image-switcher .virtooal-model-faces {
+  margin-bottom: 0;
+  position: relative;
+}
+
+#virtooal-image-switcher .virtooal-model-face {
+  display: inline;
+  max-width: 90px;
+  max-height: 106px;
+  background-color: #FFF;
+  padding: 3px;
+  margin-top: 0;
+  margin-right: 4px;
+  border: 2px solid #ccc;
+  border-radius: 2px;
+  opacity: .8;
+  cursor: pointer;
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+  height: 85px;
+}
+
+#virtooal-image-switcher .virtooal-model-face:hover {
+  opacity: 1;
+}
+
+#virtooal-image-switcher .virtooal-model-face.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+#virtooal-image-switcher .virtooal-model-face.disabled:hover {
+  opacity: 0.5;
+  cursor: default;
+}
+
+#virtooal-image-switcher .virtooal-model-face.active {
+  opacity: 1;
+  border: 2px solid #000000;
+  padding: 3px;
+}
+
+#virtooal-image-switcher .virtooal-model-face#virtooal-user-img {
+  width: 73px;
+  height: 85px;
+  background-size: 135%;
+  background-repeat: no-repeat;
+  background-position: 50% 40%;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+
+}
+
+#virtooal-image-switcher .virtooal-model-face#virtooal-user-img:before {
+  content: '';
+  border: 3px solid #FFF;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#virtooal-image-switcher #virtooal-user-img-delete {
+  background: #fc5759;
+  width: 20px;
+  height: 20px;
+  display: block;
+  cursor: pointer;
+  margin-left: 4px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  border-radius: 2px;
+
+}
+
+#virtooal-image-switcher #virtooal-user-img-delete:before,
+#virtooal-image-switcher #virtooal-user-img-delete:after {
+  content: '';
+  width: 10px;
+  height: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -5px;
+  background-color: #FFF;
+  -ms-transform: rotate(45deg);
+  /* IE 9 */
+  -webkit-transform: rotate(45deg);
+  /* Safari */
+  transform: rotate(45deg);
+}
+
+#virtooal-image-switcher #virtooal-user-img-delete:after {
+  -ms-transform: rotate(135deg);
+  /* IE 9 */
+  -webkit-transform: rotate(135deg);
+  /* Safari */
+  transform: rotate(135deg);
+}
+
+#virtooal-image-switcher .virtooal-model-face-upload {
+  display: inline-block;
+  height: 30px;
+  width: auto;
+  background: #000000;
+  border-radius: 0;
+  float: none;
+  margin: 25px auto 0;
+  padding: 5px 15px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #000000;
+  cursor: pointer;
+}
+
+#virtooal-image-switcher .virtooal-model-face-upload:hover {
+  background: #272727;;
+}
+
+.virtooal-user-image {
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  width: 100%;
+}
+
+.virtooal-user-image img {
+  position: absolute;
+  width: auto !important;
+  margin: 0 auto !important;
+}
+
+.virtooal-user-image .virtooal-user-face {
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+.virtooal-user-image .virtooal-blank-image {
+  top: -5.32%;
+  /*left: -2.65%;
+right: 13.333%;*/
+  left: -2.65%;
+  right: 0;
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -o-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+.virtooal-model-image {
+  width: auto !important;
+  margin: 0 auto !important;
+}
+
+@media only screen and (max-width: 768px) {
+
+  #virtooal-image-switcher {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .virtooal-image-switcher-content {
+    padding: 0;
+    background: transparent;
+  }
+
+  #virtooal-image-switcher .virtooal-image-switcher-info {
+    font-size: 12px;
+    margin-top: 10px;
+    padding: 0;
+    text-align: left;
+  }
+
+  #virtooal-image-switcher .virtooal-image-switcher-info b {
+    display: inline;
+  }
+
+  #virtooal-image-switcher .virtooal-model-faces {
+    width: 100%;
+    left: 0%;
+    overflow: auto;
+    white-space: nowrap;
+    margin-bottom: 5px;
+  }
+
+  #virtooal-image-switcher .virtooal-model-face {
+    height: 70px;
+    margin-right: 3px;
+  }
+
+  #virtooal-image-switcher .virtooal-model-face#virtooal-user-img {
+    width: 60px;
+    height: 70px;
+    margin: 0;
+  }
+
+  #virtooal-image-switcher button {
+    padding: 7px 12px !important;
+    margin-right: 6px !important;
+  }
+
+  .virtooal-model-faces-wrapper {
+    position: relative;
+    width: 100%;
+    float: none;
+    padding: 0 11px;
+  }
+
+  .virtooal-model-faces-wrapper .faces-left-arrow,
+  .virtooal-model-faces-wrapper .faces-right-arrow {
+    content: '';
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    z-index: 1200;
+    width: 30px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .virtooal-model-faces-wrapper .faces-left-arrow {
+    /*background: url('1073/left.png') 50% 50% no-repeat;*/
+    background-size: contain;
+    left: -15px;
+  }
+
+  .virtooal-model-faces-wrapper .faces-right-arrow {
+    /*  background: url('1073/right.png') 50% 50% no-repeat;*/
+    background-size: contain;
+    right: -15px;
+  }
+
+  #virtooal-image-switcher .virtooal-model-face-upload {
+    font-size: 13px;
+    margin: 20px 0;
+    line-height: 20px;
+    height: 30px;
+    width: 100%;
+    text-align: center;
+    float: none;
+  }
+}
+
+#virtooal-mirror #liveInfoSq,
+#virtooal-mirror #liveInfoSqOn {
+  display: block !important;
+}
+
+.mainmenubtns button {
+  display: block;
+}
+
+#virtooal-mirror {
+  background: #7c2599 !important;
+}
