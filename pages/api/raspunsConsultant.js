@@ -2,33 +2,6 @@ import {sendMethodNotAllowed, sendBadRequest, sendOk} from "../../utils/apiMetho
 import {openai} from "../../utils/openai";
 
 const SYSTEM_PROMPTS = {
-	/*	YES_NO: {
-			MESSAGE: {
-				'role': 'system',
-				'content': 'You only respond with YES or NO.',
-			},
-			TEMPERATURE: 0.1,
-			MAX_TOKENS: 5,
-			TYPE: 'yes_no',
-		},
-		SIMPLE_ASSISTANT: {
-			MESSAGE: {
-				'role': 'system',
-				'content': 'You are a simple assistant. You respond with simple sentences.',
-			},
-			TEMPERATURE: 1,
-			MAX_TOKENS: 50,
-			TYPE: 'simple_assistant',
-		},
-		SIMPLE_ASSISTANT_GENERATE_SENTENCE: {
-			MESSAGE: {
-				'role': 'system',
-				'content': 'You are a simple assistant. You respond with simple sentences.',
-			},
-			TEMPERATURE: 1,
-			MAX_TOKENS: 100,
-			TYPE: 'simple_assistant_generate_sentence',
-		},*/
 	MICHAEL_SCOTT: {
 		MESSAGE: {
 			'role': 'system',
@@ -43,8 +16,8 @@ const SYSTEM_PROMPTS = {
 			'role': 'system',
 			'content': 'Te prefaci ca esti un consultant cosmetic si raspunzi la intrebari despre produsele cosmetice si metode de machiaj. Rolul tau principal este de a ajuta persoanele să aleagă și să utilizeze cosmeticele potrivite pentru a-și îmbunătăți aspectul și a satisface nevoile specifice.',
 		},
-		TEMPERATURE: 0.5,
-		MAX_TOKENS: 600,
+		TEMPERATURE: 0.2,
+		MAX_TOKENS: 500,
 		TYPE: 'cosmetic_consultant',
 	},
 };
