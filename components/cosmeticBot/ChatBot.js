@@ -85,7 +85,7 @@ export default function ChatBot(props) {
 						messages: filteredChatHistory,
 						type: 'cosmetic_consultant',
 					}),
-					signal: AbortSignal.timeout(100000),
+					signal: AbortSignal.timeout(1000000),
 				})
 				response = await response.json();
 				event.target.disabled = false;
