@@ -150,10 +150,7 @@ const Quiz = () => {
 						 className="bg-gray-100 rounded-xl mb-2 px-2 pb-2 w-full flex flex-wrap items-center justify-center"
 						 aria-labelledby="my-radio-group3">
 						<p className="text-lg font-medium italic text-gray-800 py-2 w-full text-center">Ce tip de
-							acoperire
-							preferi
-							pentru
-							fondul de ten?</p>
+							Care este culoarea ochilor tăi?</p>
 						<div className="flex gap-[16px] flex-wrap justify-center items-center">
 							<label className="relative">
 								<Field className={`${inputClasses}`} required type="radio" name="culoareOchi"
