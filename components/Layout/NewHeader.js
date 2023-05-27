@@ -21,8 +21,17 @@ const NewHeader = () => {
 		<header className="bg-indigo-400">
 			<nav className="mx-auto flex-wrap flex container items-center justify-between p-6 lg:px-8"
 				 aria-label="Global">
-				<div className="mb-4 w-full flex items-center justify-center">
-					<span className="sr-only">Workflow</span>
+				<div className="mb-4 w-full flex items-center justify-between">
+					<div className="flex lg:hidden flex-wrap">
+						<button
+							type="button"
+							className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+							onClick={() => setMobileMenuOpen(true)}
+						>
+							<span className="sr-only">Open main menu</span>
+							<MenuIcon className="h-6 w-6" aria-hidden="true"/>
+						</button>
+					</div>
 					<Link href={'/'} prefetch={false}>
 						<img
 							className="h-16 w-auto cursor-pointer"
@@ -31,18 +40,8 @@ const NewHeader = () => {
 						/>
 					</Link>
 				</div>
-				<div className="flex lg:hidden">
-					<button
-						type="button"
-						className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-						onClick={() => setMobileMenuOpen(true)}
-					>
-						<span className="sr-only">Open main menu</span>
-						<MenuIcon className="h-6 w-6" aria-hidden="true"/>
-					</button>
-				</div>
 				<CollectionsList/>
-				<div className="space-x-4 flex">
+				<div className="gap-4 flex flex-wrap justify-center">
 					<Link href={PRODUCTS_ROUTE} prefetch={false}>
 						<a className="group inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75">
 							Catalog
