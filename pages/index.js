@@ -6,36 +6,37 @@ import {storefront} from '../utils/index.js';
 import {getAllCollectionsQuery, HPproductsQuery} from "../utils/queries.js";
 import {setAllProducts} from "../store/productsSlice.js";
 import dynamic from "next/dynamic";
-const CollectionsGrid = dynamic(() => import('../components/Parts/homepage/CollectionsGrid'), { ssr: false });
+
+const CollectionsGrid = dynamic(() => import('../components/Parts/homepage/CollectionsGrid'), {ssr: false});
 
 const Index = (props) => {
-    const { collections } = props;
-    return (
-        <>
-            <HeroSwiper />
-            <div className="px-4 sm:px-6 lg:px-8">
-                <CollectionsGrid collections={collections}/>
-                <h2 className="pb-[40px] text-center text-3xl">Noutati</h2>
-                <ProductsList currentPage={1} pageSize={12}/>
-            </div>
-        </>
-    );
+	const {collections} = props;
+	return (
+		<>
+			<HeroSwiper/>
+			<div className="px-4 sm:px-6 lg:px-8">
+				<CollectionsGrid collections={collections}/>
+				<h2 className="pb-[40px] text-center text-3xl">Noutati</h2>
+				<ProductsList currentPage={1} pageSize={12}/>
+			</div>
+		</>
+	);
 }
 export const getServerSideProps = wrapper.getServerSideProps(
-    (store) => async () => {
-        const { data: { products: { edges } } } = await storefront(HPproductsQuery);
-        store.dispatch(setAllProducts(JSON.parse(JSON.stringify(edges))));
-        const { data: {collections: {edges: collectionEdges} } } = await storefront(getAllCollectionsQuery);
-        let collectionsArray = [];
-        collectionEdges?.forEach((collection) => {
-            collectionsArray.push(collection.node);
-        });
-        return {
-            props: {
-                collections : JSON.parse(JSON.stringify(collectionsArray))
-            }
-        }
-    })
+	(store) => async () => {
+		const {data: {products: {edges}}} = await storefront(HPproductsQuery);
+		store.dispatch(setAllProducts(JSON.parse(JSON.stringify(edges))));
+		const {data: {collections: {edges: collectionEdges}}} = await storefront(getAllCollectionsQuery);
+		let collectionsArray = [];
+		collectionEdges?.forEach((collection) => {
+			collectionsArray.push(collection.node);
+		});
+		return {
+			props: {
+				collections: JSON.parse(JSON.stringify(collectionsArray))
+			}
+		}
+	})
 
 
 export default Index

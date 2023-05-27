@@ -255,7 +255,7 @@ function Product({product, recommendedProducts}) {
 								<div className={'flex flex-col'}>
 									{getVariantsPickers()}
 									<div>
-										<label>Select Quantity</label>
+										<label>Alegeti cantitatea</label>
 										<input
 											onChange={handleQuantityChange}
 											type="number"
@@ -291,7 +291,7 @@ function Product({product, recommendedProducts}) {
 													  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
 											</svg> :
 											<span>
-                                              Add To Cart {selectedVariant?.amount ? formatPrice(selectedVariant?.amount) : ''}
+                                              Adaugă în coș {selectedVariant?.amount ? formatPrice(selectedVariant?.amount) : ''}
                                           </span>
 										}
 									</button>
@@ -301,7 +301,7 @@ function Product({product, recommendedProducts}) {
 										type="button"
 										className="w-full bg-white border rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-500"
 									>
-										Go to checkout
+										Mergi la Checkout
 									</button>
 								</div>
 							</div>

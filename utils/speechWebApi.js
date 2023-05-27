@@ -13,7 +13,7 @@ export const startSpeechRecognition = (setSearchTerm, setIsListening) => {
 	recognition.start();
 
 	// Event handler for when speech is recognized
-	recognition.onresult = function(event) {
+	recognition.onresult = function (event) {
 		// Get the recognized speech transcript
 		const transcript = event.results[0][0].transcript;
 
@@ -23,7 +23,14 @@ export const startSpeechRecognition = (setSearchTerm, setIsListening) => {
 	};
 
 	// Event handler for speech recognition errors
-	recognition.onerror = function(event) {
+	recognition.onerror = function (event) {
 		console.error('Speech recognition error: ', event.error);
 	};
+}
+
+export const checkSpeechRecognition = () => {
+	if (!('webkitSpeechRecognition' in window)) {
+		return false;
+	}
+	return true;
 }

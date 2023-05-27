@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Dialog,} from '@headlessui/react';
-import {MenuIcon, ShoppingBagIcon} from '@heroicons/react/solid';
+import {MenuIcon, ShoppingBagIcon, UserIcon} from '@heroicons/react/solid';
 import {XIcon,} from '@heroicons/react/outline';
 import CollectionsList from "./CollectionsList";
 import {useSelector} from "react-redux";
@@ -41,7 +41,7 @@ const NewHeader = () => {
 					</Link>
 				</div>
 				<CollectionsList/>
-				<div className="gap-4 flex flex-wrap justify-center">
+				<div className="gap-2 flex flex-wrap justify-center">
 					<Link href={PRODUCTS_ROUTE} prefetch={false}>
 						<a className="group inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75">
 							Catalog
@@ -64,15 +64,9 @@ const NewHeader = () => {
 					</Link>
 					<Link href={"https://glowupshinemoment.myshopify.com/account/login"} prefetch={false}>
 						<a className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50">
-							Account
+							<UserIcon className="h-7 w-7 text-indigo-600"/>
 						</a>
 					</Link>
-					{/*  <a
-                    href="@/components/Layout/NewHeader#"
-                    className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
-                  >
-                      Account
-                  </a>*/}
 				</div>
 			</nav>
 			{collectionsItems &&
