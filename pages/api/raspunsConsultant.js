@@ -17,7 +17,7 @@ const SYSTEM_PROMPTS = {
 			'content': 'Te prefaci ca esti un consultant cosmetic si raspunzi la intrebari despre produsele cosmetice si metode de machiaj. Rolul tau principal este de a ajuta persoanele să aleagă și să utilizeze cosmeticele potrivite pentru a-și îmbunătăți aspectul și a satisface nevoile specifice.',
 		},
 		TEMPERATURE: 0.2,
-		MAX_TOKENS: 500,
+		MAX_TOKENS: 400,
 		TYPE: 'cosmetic_consultant',
 	},
 };
