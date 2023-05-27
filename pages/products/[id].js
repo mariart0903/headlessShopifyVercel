@@ -12,10 +12,9 @@ import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
 import SocialShare from "../../components/Parts/SocialShare.js";
 import ReviewsWidget from "../../components/Yotpo/ReviewsWidget";
-/*
-const ReviewsWidget = dynamic(() => import('../../components/Yotpo/ReviewsWidget'), {ssr: false});
-*/
+
 const Auglio = dynamic(() => import('../../components/Parts/auglio/Auglio.js'), {ssr: false});
+const YotpoScript = dynamic(() => import('../../components/Yotpo/YotpoScript'), {ssr: false});
 
 // Import Swiper styles
 import 'swiper/css';
@@ -193,6 +192,7 @@ function Product({product, recommendedProducts}) {
 
 	return (
 		<div>
+			<YotpoScript/>
 			<SEOContext.Provider value={SEOValues}>
 				<SeoHead/>
 				<div className="bg-white">
