@@ -1,7 +1,7 @@
 import React from 'react';
 import MsgList from "./MsgList";
 
-const ERRORS = {
+export const ERRORS = {
 	WRONG_CONVERSATION_TYPE: {
 		type: 'wrong_conversation_type',
 		message: 'Tipul conversației nu este cunoscut.',
@@ -26,7 +26,7 @@ const filterChatHistory = chatHistory => {
 	return filteredChatHistory;
 };
 
-const buildResponseMessageObject = response => {
+export const buildResponseMessageObject = response => {
 	let responseMessageObject;
 
 	if (!response?.data?.message) {

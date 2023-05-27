@@ -5,7 +5,7 @@ import {XIcon,} from '@heroicons/react/outline';
 import CollectionsList from "./CollectionsList";
 import {useSelector} from "react-redux";
 import Link from "next/link";
-import {CART_ROUTE, COLLECTIONS_ROUTE, PRODUCTS_ROUTE, CHAT_ROUTE} from "../../utils/constants";
+import {CART_ROUTE, COLLECTIONS_ROUTE, PRODUCTS_ROUTE, CHAT_ROUTE, QUIZ_ROUTE} from "../../utils/constants";
 import {useRouter} from "next/router";
 
 const NewHeader = () => {
@@ -50,6 +50,11 @@ const NewHeader = () => {
 					<Link href={CHAT_ROUTE} prefetch={false}>
 						<a className="group inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75">
 							Consultant virtual
+						</a>
+					</Link>
+					<Link href={QUIZ_ROUTE} prefetch={false}>
+						<a className="group inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75">
+							Quiz virtual
 						</a>
 					</Link>
 					<Link href={CART_ROUTE} prefetch={false}>

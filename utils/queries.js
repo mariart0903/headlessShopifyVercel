@@ -340,3 +340,29 @@ export const getProductByTitleQuery2 = `query GetProductByTitle($title: String!)
     }
 }
 `;
+
+export const QuizproductsQuery = `query Products($tag: String!) {
+  products(first: 100, query: $tag) {
+    edges {
+      node {
+        title,
+        handle,
+        tags,
+        id,
+        priceRange {
+          minVariantPrice {
+            amount
+          }
+        }
+        images(first: 1) {
+          edges {
+            node {
+              transformedSrc
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+}`;
