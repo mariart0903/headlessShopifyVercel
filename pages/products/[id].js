@@ -13,7 +13,6 @@ import {useRouter} from "next/router";
 import SocialShare from "../../components/Parts/SocialShare.js";
 import ReviewsWidget from "../../components/Yotpo/ReviewsWidget";
 
-const Auglio = dynamic(() => import('../../components/Parts/auglio/Auglio.js'), {ssr: false});
 const YotpoScript = dynamic(() => import('../../components/Yotpo/YotpoScript'), {ssr: false});
 
 // Import Swiper styles
@@ -246,7 +245,6 @@ function Product({product, recommendedProducts}) {
 										 data-yotpo-product-id={id?.replace('gid://shopify/Product/', '')}>
 									</div>
 								</div>
-								<Auglio/>
 								<p className="text-3xl tracking-tight text-gray-900 mt-4 font-bold"> {formatPrice(selectedVariant?.amount)} </p>
 
 								<div className="text-gray-500 my-6">{descriptionHtml && parse(descriptionHtml)}</div>

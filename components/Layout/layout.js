@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import CartDrawer from "../Cart/CartDrawer";
-import Header from "./Header";
+
 import NewHeader from "./NewHeader";
 import {client} from "../../utils/shopifyBuyClient";
 import {useDispatch} from "react-redux";
@@ -9,6 +9,7 @@ import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
 
 const Search = dynamic(() => import('./Search'), {ssr: false});
+const Auglio = dynamic(() => import('../../components/Parts/auglio/Auglio.js'), {ssr: false});
 
 const Layout = ({children}) => {
 	const dispatch = useDispatch();
@@ -59,6 +60,9 @@ const Layout = ({children}) => {
 				className="bg-center bg-repeat-y py-8 main-bg"
 				/*style={{backgroundImage: 'url("/images/lines2.png")'}}*/
 			>
+				<div className="fixed z-[999] bottom-[20px] right-[30px]">
+					<Auglio/>
+				</div>
 				<div className={`${isHomePage ? '' : 'px-4 sm:px-6 lg:px-8'} container mx-auto`}>{children}</div>
 			</main>
 		</div>
